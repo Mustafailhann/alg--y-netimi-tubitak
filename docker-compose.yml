@@ -1,0 +1,50 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: realitylens-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: realitylens
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d realitylens"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile
+    container_name: realitylens-api
+    restart: unless-stopped
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=realitylens;Username=postgres;Password=postgres"
+      Jwt__Issuer: RealityLens
+      Jwt__Audience: RealityLens
+      Jwt__Secret: REPLACE_WITH_SECURE_SECRET_MINIMUM_32_CHARACTERS
+    ports:
+      - "5000:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  ai-service:
+    build:
+      context: ./apps/ai-service
+      dockerfile: Dockerfile
+    container_name: realitylens-ai-service
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+
+volumes:
+  postgres_data:
+    name: realitylens_postgres_data

@@ -1,0 +1,6 @@
+@RealityLens.Presentation_HostAddress = http://localhost:5128
+
+GET {{RealityLens.Presentation_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

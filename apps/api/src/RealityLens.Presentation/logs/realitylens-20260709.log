@@ -1,0 +1,788 @@
+2026-07-09 08:38:49.748 +03:00 [INF] User profile is available. Using 'C:\Users\mustafa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-07-09 08:38:49.930 +03:00 [INF] Now listening on: http://localhost:5128
+2026-07-09 08:38:49.933 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-09 08:38:49.934 +03:00 [INF] Hosting environment: Development
+2026-07-09 08:38:49.934 +03:00 [INF] Content root path: C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation
+2026-07-09 08:39:52.539 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media - null null
+2026-07-09 08:39:52.614 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-07-09 08:39:52.618 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:39:52.649 +03:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Administrator|Teacher)
+2026-07-09 08:39:52.653 +03:00 [INF] AuthenticationScheme: Bearer was challenged.
+2026-07-09 08:39:52.670 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media - 401 0 null 131.8322ms
+2026-07-09 08:40:01.405 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/auth/login - null null
+2026-07-09 08:40:01.408 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:40:01.410 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/auth/login - 204 null null 5.7802ms
+2026-07-09 08:40:01.413 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5128/api/auth/login - application/json 59
+2026-07-09 08:40:01.416 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:40:01.419 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AuthController.Login (RealityLens.Presentation)'
+2026-07-09 08:40:01.443 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(RealityLens.Application.DTOs.Auth.LoginRequest, System.Threading.CancellationToken) on controller RealityLens.Presentation.Controllers.AuthController (RealityLens.Presentation).
+2026-07-09 08:40:03.475 +03:00 [INF] Executed DbCommand (50ms) [Parameters=[@__request_Email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."IsDeleted", u."PasswordHash", u."RoleId", u."UpdatedAt", u."Version", r."Id", r."CreatedAt", r."IsDeleted", r."Name", r."UpdatedAt", r."Version"
+FROM "Users" AS u
+INNER JOIN "Roles" AS r ON u."RoleId" = r."Id"
+WHERE u."Email" = @__request_Email_0
+LIMIT 1
+2026-07-09 08:40:03.754 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = Boolean), @p4='?' (DbType = DateTime), @p5='?', @p6='?' (DbType = DateTime), @p7='?' (DbType = Guid), @p8='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "ExpiresAt", "IsDeleted", "RevokedAt", "Token", "UpdatedAt", "UserId", "Version")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2026-07-09 08:40:03.768 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.Auth.AuthenticationResponse'.
+2026-07-09 08:40:03.788 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AuthController.Login (RealityLens.Presentation) in 2341.7977ms
+2026-07-09 08:40:03.790 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AuthController.Login (RealityLens.Presentation)'
+2026-07-09 08:40:03.798 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5128/api/auth/login - 200 null application/json; charset=utf-8 2384.0612ms
+2026-07-09 08:40:07.404 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media - null null
+2026-07-09 08:40:07.409 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:40:07.412 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media - 204 null null 8.1133ms
+2026-07-09 08:40:07.414 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media - null null
+2026-07-09 08:40:07.416 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:40:07.454 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation)'
+2026-07-09 08:40:07.459 +03:00 [INF] Route matched with {action = "GetAll", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-09 08:40:07.520 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."Checksum", m."CreatedAt", m."DurationInSeconds", m."Extension", m."FileSize", m."Height", m."IsDeleted", m."MimeType", m."OriginalFileName", m."ProcessingError", m."Status", m."StoragePath", m."ThumbnailPath", m."UpdatedAt", m."UploadedAt", m."UploadedByUserId", m."Version", m."Width"
+FROM "Media" AS m
+2026-07-09 08:40:07.558 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+ListSelectIterator`2[[RealityLens.Domain.Entities.Media, RealityLens.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RealityLens.Application.DTOs.MediaResponse, RealityLens.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-09 08:40:07.589 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation) in 127.9546ms
+2026-07-09 08:40:07.590 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation)'
+2026-07-09 08:40:07.593 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media - 200 null application/json; charset=utf-8 178.4091ms
+2026-07-09 08:40:07.713 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media/4ff54669-16a0-4ae6-a2fc-49745c8aa979/thumbnail - null null
+2026-07-09 08:40:07.715 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:40:07.716 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media/4ff54669-16a0-4ae6-a2fc-49745c8aa979/thumbnail - 204 null null 3.3953ms
+2026-07-09 08:40:07.718 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media/4ff54669-16a0-4ae6-a2fc-49745c8aa979/thumbnail - null null
+2026-07-09 08:40:07.718 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media/7de23393-6aae-4cbe-a179-e818c6ff09f0/thumbnail - null null
+2026-07-09 08:40:07.718 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media/eb2b4f8a-32fa-4b89-aca7-56b2878b00ca/thumbnail - null null
+2026-07-09 08:40:07.719 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media/771bd27f-28db-46f7-9d41-f6287f52969c/thumbnail - null null
+2026-07-09 08:40:07.721 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:40:07.721 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:40:07.721 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media/313766aa-af37-45e9-94ee-f0d4254a0075/thumbnail - null null
+2026-07-09 08:40:07.722 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media/6ae8033c-b876-40d3-b35d-3374faeaee76/thumbnail - null null
+2026-07-09 08:40:07.722 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:40:07.724 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:40:07.725 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:40:07.727 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-09 08:40:07.727 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:40:07.728 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media/7de23393-6aae-4cbe-a179-e818c6ff09f0/thumbnail - 204 null null 10.0732ms
+2026-07-09 08:40:07.730 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media/eb2b4f8a-32fa-4b89-aca7-56b2878b00ca/thumbnail - 204 null null 12.0753ms
+2026-07-09 08:40:07.732 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media/9880a2e4-f42f-4e8b-9d5a-6ba75774710d/thumbnail - null null
+2026-07-09 08:40:07.733 +03:00 [INF] Route matched with {action = "GetThumbnail", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetThumbnail(System.Guid) on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-09 08:40:07.734 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media/771bd27f-28db-46f7-9d41-f6287f52969c/thumbnail - 204 null null 14.2446ms
+2026-07-09 08:40:07.735 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media/7de23393-6aae-4cbe-a179-e818c6ff09f0/thumbnail - null null
+2026-07-09 08:40:07.737 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:40:07.738 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media/313766aa-af37-45e9-94ee-f0d4254a0075/thumbnail - 204 null null 17.3541ms
+2026-07-09 08:40:07.741 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media/eb2b4f8a-32fa-4b89-aca7-56b2878b00ca/thumbnail - null null
+2026-07-09 08:40:07.742 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:40:07.746 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:40:07.743 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media/6ae8033c-b876-40d3-b35d-3374faeaee76/thumbnail - 204 null null 21.1437ms
+2026-07-09 08:40:07.745 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media/771bd27f-28db-46f7-9d41-f6287f52969c/thumbnail - null null
+2026-07-09 08:40:07.747 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-09 08:40:07.747 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-09 08:40:07.749 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media/9880a2e4-f42f-4e8b-9d5a-6ba75774710d/thumbnail - 204 null null 16.164ms
+2026-07-09 08:40:07.751 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media/313766aa-af37-45e9-94ee-f0d4254a0075/thumbnail - null null
+2026-07-09 08:40:07.752 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:40:07.752 +03:00 [INF] Route matched with {action = "GetThumbnail", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetThumbnail(System.Guid) on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-09 08:40:07.752 +03:00 [INF] Route matched with {action = "GetThumbnail", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetThumbnail(System.Guid) on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-09 08:40:07.754 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media/6ae8033c-b876-40d3-b35d-3374faeaee76/thumbnail - null null
+2026-07-09 08:40:07.755 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:40:07.756 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-09 08:40:07.758 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:40:07.759 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-09 08:40:07.759 +03:00 [INF] Route matched with {action = "GetThumbnail", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetThumbnail(System.Guid) on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-09 08:40:07.759 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-09 08:40:07.760 +03:00 [INF] Route matched with {action = "GetThumbnail", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetThumbnail(System.Guid) on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-09 08:40:07.761 +03:00 [INF] Route matched with {action = "GetThumbnail", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetThumbnail(System.Guid) on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-09 08:40:07.769 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."Checksum", m."CreatedAt", m."DurationInSeconds", m."Extension", m."FileSize", m."Height", m."IsDeleted", m."MimeType", m."OriginalFileName", m."ProcessingError", m."Status", m."StoragePath", m."ThumbnailPath", m."UpdatedAt", m."UploadedAt", m."UploadedByUserId", m."Version", m."Width"
+FROM "Media" AS m
+WHERE m."Id" = @__p_0
+LIMIT 1
+2026-07-09 08:40:07.775 +03:00 [INF] Executing PhysicalFileResult, sending file 'C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation\wwwroot\uploads\thumbnails\4b3ff933b94648809f389a0c3506e909.webp' with download name '' ...
+2026-07-09 08:40:07.799 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation) in 36.1821ms
+2026-07-09 08:40:07.800 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-09 08:40:07.802 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media/313766aa-af37-45e9-94ee-f0d4254a0075/thumbnail - 200 120140 image/webp 51.2304ms
+2026-07-09 08:40:07.805 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media/9880a2e4-f42f-4e8b-9d5a-6ba75774710d/thumbnail - null null
+2026-07-09 08:40:07.806 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:40:07.807 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-09 08:40:07.808 +03:00 [INF] Route matched with {action = "GetThumbnail", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetThumbnail(System.Guid) on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-09 08:40:07.809 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."Checksum", m."CreatedAt", m."DurationInSeconds", m."Extension", m."FileSize", m."Height", m."IsDeleted", m."MimeType", m."OriginalFileName", m."ProcessingError", m."Status", m."StoragePath", m."ThumbnailPath", m."UpdatedAt", m."UploadedAt", m."UploadedByUserId", m."Version", m."Width"
+FROM "Media" AS m
+WHERE m."Id" = @__p_0
+LIMIT 1
+2026-07-09 08:40:07.809 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."Checksum", m."CreatedAt", m."DurationInSeconds", m."Extension", m."FileSize", m."Height", m."IsDeleted", m."MimeType", m."OriginalFileName", m."ProcessingError", m."Status", m."StoragePath", m."ThumbnailPath", m."UpdatedAt", m."UploadedAt", m."UploadedByUserId", m."Version", m."Width"
+FROM "Media" AS m
+WHERE m."Id" = @__p_0
+LIMIT 1
+2026-07-09 08:40:07.812 +03:00 [INF] Executing PhysicalFileResult, sending file 'C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation\wwwroot\uploads\thumbnails\66ec86609f784c05bbf8d64476e7c216.webp' with download name '' ...
+2026-07-09 08:40:07.812 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."Checksum", m."CreatedAt", m."DurationInSeconds", m."Extension", m."FileSize", m."Height", m."IsDeleted", m."MimeType", m."OriginalFileName", m."ProcessingError", m."Status", m."StoragePath", m."ThumbnailPath", m."UpdatedAt", m."UploadedAt", m."UploadedByUserId", m."Version", m."Width"
+FROM "Media" AS m
+WHERE m."Id" = @__p_0
+LIMIT 1
+2026-07-09 08:40:07.812 +03:00 [INF] Executing PhysicalFileResult, sending file 'C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation\wwwroot\uploads\thumbnails\22db039ac6c14357b2b57b2f5ee61827.webp' with download name '' ...
+2026-07-09 08:40:07.814 +03:00 [INF] Executing PhysicalFileResult, sending file 'C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation\wwwroot\uploads\thumbnails\8cb64e84b227480b85a43b12718a90b8.webp' with download name '' ...
+2026-07-09 08:40:07.812 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."Checksum", m."CreatedAt", m."DurationInSeconds", m."Extension", m."FileSize", m."Height", m."IsDeleted", m."MimeType", m."OriginalFileName", m."ProcessingError", m."Status", m."StoragePath", m."ThumbnailPath", m."UpdatedAt", m."UploadedAt", m."UploadedByUserId", m."Version", m."Width"
+FROM "Media" AS m
+WHERE m."Id" = @__p_0
+LIMIT 1
+2026-07-09 08:40:07.815 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."Checksum", m."CreatedAt", m."DurationInSeconds", m."Extension", m."FileSize", m."Height", m."IsDeleted", m."MimeType", m."OriginalFileName", m."ProcessingError", m."Status", m."StoragePath", m."ThumbnailPath", m."UpdatedAt", m."UploadedAt", m."UploadedByUserId", m."Version", m."Width"
+FROM "Media" AS m
+WHERE m."Id" = @__p_0
+LIMIT 1
+2026-07-09 08:40:07.817 +03:00 [INF] Executing PhysicalFileResult, sending file 'C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation\wwwroot\uploads\thumbnails\a3d4c2b8bd824442a37a4f438c245b44.webp' with download name '' ...
+2026-07-09 08:40:07.818 +03:00 [INF] Executing PhysicalFileResult, sending file 'C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation\wwwroot\uploads\thumbnails\dcf931a49aeb4e18a43030f83c3c32b1.webp' with download name '' ...
+2026-07-09 08:40:07.819 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."Checksum", m."CreatedAt", m."DurationInSeconds", m."Extension", m."FileSize", m."Height", m."IsDeleted", m."MimeType", m."OriginalFileName", m."ProcessingError", m."Status", m."StoragePath", m."ThumbnailPath", m."UpdatedAt", m."UploadedAt", m."UploadedByUserId", m."Version", m."Width"
+FROM "Media" AS m
+WHERE m."Id" = @__p_0
+LIMIT 1
+2026-07-09 08:40:07.821 +03:00 [INF] Executing PhysicalFileResult, sending file 'C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation\wwwroot\uploads\thumbnails\22fa21023057454f8b1557ad33af9f20.webp' with download name '' ...
+2026-07-09 08:40:07.823 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation) in 61.837ms
+2026-07-09 08:40:07.823 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation) in 86.0586ms
+2026-07-09 08:40:07.824 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-09 08:40:07.825 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-09 08:40:07.825 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation) in 15.6291ms
+2026-07-09 08:40:07.826 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation) in 70.0734ms
+2026-07-09 08:40:07.827 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-09 08:40:07.827 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation) in 70.4105ms
+2026-07-09 08:40:07.828 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media/771bd27f-28db-46f7-9d41-f6287f52969c/thumbnail - 200 13928 image/webp 83.0368ms
+2026-07-09 08:40:07.828 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-09 08:40:07.830 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-09 08:40:07.831 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media/4ff54669-16a0-4ae6-a2fc-49745c8aa979/thumbnail - 200 206 image/webp 112.9789ms
+2026-07-09 08:40:07.831 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation) in 67.5832ms
+2026-07-09 08:40:07.834 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media/9880a2e4-f42f-4e8b-9d5a-6ba75774710d/thumbnail - 200 51380 image/webp 29.2162ms
+2026-07-09 08:40:07.838 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-09 08:40:07.839 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media/7de23393-6aae-4cbe-a179-e818c6ff09f0/thumbnail - 200 44 image/webp 103.266ms
+2026-07-09 08:40:07.841 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media/eb2b4f8a-32fa-4b89-aca7-56b2878b00ca/thumbnail - 200 218 image/webp 100.4599ms
+2026-07-09 08:40:07.844 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media/6ae8033c-b876-40d3-b35d-3374faeaee76/thumbnail - 200 51210 image/webp 90.2483ms
+2026-07-09 08:40:59.129 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/assessments - null null
+2026-07-09 08:40:59.131 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:40:59.132 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/assessments - 204 null null 3.1081ms
+2026-07-09 08:40:59.134 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/assessments - null null
+2026-07-09 08:40:59.135 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:40:59.136 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetAll (RealityLens.Presentation)'
+2026-07-09 08:40:59.139 +03:00 [INF] Route matched with {action = "GetAll", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-09 08:40:59.157 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version"
+FROM "Assessments" AS a
+WHERE a."Status" <> 'Archived'
+2026-07-09 08:40:59.172 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+ListSelectIterator`2[[RealityLens.Domain.Entities.Assessment, RealityLens.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RealityLens.Application.DTOs.AssessmentListResponse, RealityLens.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-09 08:40:59.181 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.GetAll (RealityLens.Presentation) in 40.9907ms
+2026-07-09 08:40:59.181 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetAll (RealityLens.Presentation)'
+2026-07-09 08:40:59.183 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/assessments - 200 null application/json; charset=utf-8 48.6898ms
+2026-07-09 08:41:01.916 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/fe77d6a0-caaa-4811-9671-687beeb41726 - null null
+2026-07-09 08:41:01.918 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:41:01.919 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/fe77d6a0-caaa-4811-9671-687beeb41726 - 204 null null 2.8676ms
+2026-07-09 08:41:01.921 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/assessments/fe77d6a0-caaa-4811-9671-687beeb41726 - null null
+2026-07-09 08:41:01.922 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:41:01.923 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-09 08:41:01.927 +03:00 [INF] Route matched with {action = "GetById", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(System.Guid) on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-09 08:41:01.953 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version", g."Id", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "Assessments" AS a
+LEFT JOIN "GroundTruths" AS g ON a."Id" = g."AssessmentId"
+WHERE a."Id" = @__id_0
+LIMIT 1
+2026-07-09 08:41:01.959 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AssessmentDetailResponse'.
+2026-07-09 08:41:01.973 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation) in 45.014ms
+2026-07-09 08:41:01.974 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-09 08:41:01.976 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/assessments/fe77d6a0-caaa-4811-9671-687beeb41726 - 200 null application/json; charset=utf-8 54.854ms
+2026-07-09 08:41:12.921 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/fe77d6a0-caaa-4811-9671-687beeb41726/groundtruth - null null
+2026-07-09 08:41:12.924 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:41:12.925 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/fe77d6a0-caaa-4811-9671-687beeb41726/groundtruth - 204 null null 3.6145ms
+2026-07-09 08:41:12.927 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5128/api/assessments/fe77d6a0-caaa-4811-9671-687beeb41726/groundtruth - application/json 74
+2026-07-09 08:41:12.929 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:41:12.930 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.GroundTruthController.Create (RealityLens.Presentation)'
+2026-07-09 08:41:12.935 +03:00 [INF] Route matched with {action = "Create", controller = "GroundTruth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(System.Guid, RealityLens.Application.DTOs.CreateGroundTruthRequest) on controller RealityLens.Presentation.Controllers.GroundTruthController (RealityLens.Presentation).
+2026-07-09 08:41:12.983 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__assessmentId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version"
+FROM "Assessments" AS a
+WHERE a."Id" = @__assessmentId_0
+LIMIT 1
+2026-07-09 08:41:13.005 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__assessmentId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "GroundTruths" AS g
+    WHERE g."AssessmentId" = @__assessmentId_0)
+2026-07-09 08:41:13.069 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = DateTime), @p3='?' (DbType = Boolean), @p4='?', @p5='?' (DbType = Guid), @p6='?', @p7='?', @p8='?' (DbType = DateTime), @p9='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "GroundTruths" ("Id", "AssessmentId", "CreatedAt", "IsDeleted", "Judgment", "ManipulationCategoryId", "Reason", "Status", "UpdatedAt", "Version")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+2026-07-09 08:41:13.071 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.GroundTruthResponse'.
+2026-07-09 08:41:13.074 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.GroundTruthController.Create (RealityLens.Presentation) in 137.5207ms
+2026-07-09 08:41:13.075 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.GroundTruthController.Create (RealityLens.Presentation)'
+2026-07-09 08:41:13.076 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5128/api/assessments/fe77d6a0-caaa-4811-9671-687beeb41726/groundtruth - 200 null application/json; charset=utf-8 149.2308ms
+2026-07-09 08:41:13.208 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/fe77d6a0-caaa-4811-9671-687beeb41726 - null null
+2026-07-09 08:41:13.210 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media - null null
+2026-07-09 08:41:13.211 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:41:13.213 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:41:13.214 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/fe77d6a0-caaa-4811-9671-687beeb41726 - 204 null null 6.0028ms
+2026-07-09 08:41:13.215 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media - 204 null null 5.7731ms
+2026-07-09 08:41:13.217 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/assessments/fe77d6a0-caaa-4811-9671-687beeb41726 - null null
+2026-07-09 08:41:13.219 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media - null null
+2026-07-09 08:41:13.221 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:41:13.222 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:41:13.223 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-09 08:41:13.223 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation)'
+2026-07-09 08:41:13.224 +03:00 [INF] Route matched with {action = "GetById", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(System.Guid) on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-09 08:41:13.224 +03:00 [INF] Route matched with {action = "GetAll", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-09 08:41:13.228 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."Checksum", m."CreatedAt", m."DurationInSeconds", m."Extension", m."FileSize", m."Height", m."IsDeleted", m."MimeType", m."OriginalFileName", m."ProcessingError", m."Status", m."StoragePath", m."ThumbnailPath", m."UpdatedAt", m."UploadedAt", m."UploadedByUserId", m."Version", m."Width"
+FROM "Media" AS m
+2026-07-09 08:41:13.230 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+ListSelectIterator`2[[RealityLens.Domain.Entities.Media, RealityLens.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RealityLens.Application.DTOs.MediaResponse, RealityLens.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-09 08:41:13.231 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version", g."Id", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "Assessments" AS a
+LEFT JOIN "GroundTruths" AS g ON a."Id" = g."AssessmentId"
+WHERE a."Id" = @__id_0
+LIMIT 1
+2026-07-09 08:41:13.232 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation) in 5.7703ms
+2026-07-09 08:41:13.233 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation)'
+2026-07-09 08:41:13.235 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media - 200 null application/json; charset=utf-8 16.2153ms
+2026-07-09 08:41:13.237 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AssessmentDetailResponse'.
+2026-07-09 08:41:13.239 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation) in 13.6139ms
+2026-07-09 08:41:13.240 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-09 08:41:13.242 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/assessments/fe77d6a0-caaa-4811-9671-687beeb41726 - 200 null application/json; charset=utf-8 24.6497ms
+2026-07-09 08:41:13.424 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/groundtruth/33c29056-b9a2-4319-8322-783039116345 - null null
+2026-07-09 08:41:13.426 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:41:13.428 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/groundtruth/33c29056-b9a2-4319-8322-783039116345 - 204 null null 3.6909ms
+2026-07-09 08:41:13.429 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/annotations/groundtruth/33c29056-b9a2-4319-8322-783039116345 - null null
+2026-07-09 08:41:13.431 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:41:13.432 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation)'
+2026-07-09 08:41:13.435 +03:00 [INF] Route matched with {action = "GetByGroundTruth", controller = "Annotation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetByGroundTruth(System.Guid) on controller RealityLens.Presentation.Controllers.AnnotationController (RealityLens.Presentation).
+2026-07-09 08:41:13.475 +03:00 [ERR] Failed executing DbCommand (7ms) [Parameters=[@__groundTruthId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT g0."Id", g0."AssessmentId", g0."CreatedAt", g0."IsDeleted", g0."Judgment", g0."ManipulationCategoryId", g0."Reason", g0."Status", g0."UpdatedAt", g0."Version", a."Id", a."CreatedAt", a."CreatedBy", a."EndSeconds", a."GeometryData", a."GroundTruthId", a."IsDeleted", a."ParticipantAnswerId", a."StartSeconds", a."Type", a."UpdatedAt", a."Version"
+FROM (
+    SELECT g."Id", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+    FROM "GroundTruths" AS g
+    WHERE g."Id" = @__groundTruthId_0
+    LIMIT 1
+) AS g0
+LEFT JOIN "Annotations" AS a ON g0."Id" = a."GroundTruthId"
+ORDER BY g0."Id"
+2026-07-09 08:41:13.486 +03:00 [ERR] An exception occurred while iterating over the results of a query for context type 'RealityLens.Persistence.RealityLensDbContext'.
+Npgsql.PostgresException (0x80004005): 42703: column a.GroundTruthId does not exist
+
+POSITION: 641
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column a.GroundTruthId does not exist
+    Position: 641
+    File: parse_relation.c
+    Line: 3827
+    Routine: errorMissingColumn
+Npgsql.PostgresException (0x80004005): 42703: column a.GroundTruthId does not exist
+
+POSITION: 641
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column a.GroundTruthId does not exist
+    Position: 641
+    File: parse_relation.c
+    Line: 3827
+    Routine: errorMissingColumn
+2026-07-09 08:41:13.491 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation) in 55.7546ms
+2026-07-09 08:41:13.492 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation)'
+2026-07-09 08:41:13.518 +03:00 [ERR] An unhandled exception occurred.
+Npgsql.PostgresException (0x80004005): 42703: column a.GroundTruthId does not exist
+
+POSITION: 641
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at RealityLens.Persistence.Services.AnnotationService.GetByGroundTruthAsync(Guid groundTruthId) in C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Persistence\Services\AnnotationService.cs:line 42
+   at RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth(Guid groundTruthId) in C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation\Controllers\AnnotationController.cs:line 41
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at RealityLens.Presentation.Middleware.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation\Middleware\GlobalExceptionMiddleware.cs:line 27
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column a.GroundTruthId does not exist
+    Position: 641
+    File: parse_relation.c
+    Line: 3827
+    Routine: errorMissingColumn
+2026-07-09 08:41:13.529 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/annotations/groundtruth/33c29056-b9a2-4319-8322-783039116345 - 500 null application/problem+json 99.8766ms
+2026-07-09 08:41:22.989 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/11b1a207-1430-41d9-96cb-61cf771a568e - null null
+2026-07-09 08:41:22.991 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:41:22.993 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/11b1a207-1430-41d9-96cb-61cf771a568e - 204 null null 3.4406ms
+2026-07-09 08:41:22.994 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/assessments/11b1a207-1430-41d9-96cb-61cf771a568e - null null
+2026-07-09 08:41:22.996 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:41:22.997 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-09 08:41:22.998 +03:00 [INF] Route matched with {action = "GetById", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(System.Guid) on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-09 08:41:23.005 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version", g."Id", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "Assessments" AS a
+LEFT JOIN "GroundTruths" AS g ON a."Id" = g."AssessmentId"
+WHERE a."Id" = @__id_0
+LIMIT 1
+2026-07-09 08:41:23.011 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AssessmentDetailResponse'.
+2026-07-09 08:41:23.013 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation) in 13.9617ms
+2026-07-09 08:41:23.014 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-09 08:41:23.015 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/assessments/11b1a207-1430-41d9-96cb-61cf771a568e - 200 null application/json; charset=utf-8 20.8655ms
+2026-07-09 08:41:23.187 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/groundtruth/c9e01e20-8b1f-4a9c-a828-b4109c8140c5 - null null
+2026-07-09 08:41:23.188 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/assessments/11b1a207-1430-41d9-96cb-61cf771a568e - null null
+2026-07-09 08:41:23.189 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:41:23.190 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:41:23.191 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-09 08:41:23.191 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/groundtruth/c9e01e20-8b1f-4a9c-a828-b4109c8140c5 - 204 null null 4.3936ms
+2026-07-09 08:41:23.192 +03:00 [INF] Route matched with {action = "GetById", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(System.Guid) on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-09 08:41:23.193 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/annotations/groundtruth/c9e01e20-8b1f-4a9c-a828-b4109c8140c5 - null null
+2026-07-09 08:41:23.195 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:41:23.195 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation)'
+2026-07-09 08:41:23.196 +03:00 [INF] Route matched with {action = "GetByGroundTruth", controller = "Annotation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetByGroundTruth(System.Guid) on controller RealityLens.Presentation.Controllers.AnnotationController (RealityLens.Presentation).
+2026-07-09 08:41:23.197 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version", g."Id", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "Assessments" AS a
+LEFT JOIN "GroundTruths" AS g ON a."Id" = g."AssessmentId"
+WHERE a."Id" = @__id_0
+LIMIT 1
+2026-07-09 08:41:23.198 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AssessmentDetailResponse'.
+2026-07-09 08:41:23.199 +03:00 [ERR] Failed executing DbCommand (1ms) [Parameters=[@__groundTruthId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT g0."Id", g0."AssessmentId", g0."CreatedAt", g0."IsDeleted", g0."Judgment", g0."ManipulationCategoryId", g0."Reason", g0."Status", g0."UpdatedAt", g0."Version", a."Id", a."CreatedAt", a."CreatedBy", a."EndSeconds", a."GeometryData", a."GroundTruthId", a."IsDeleted", a."ParticipantAnswerId", a."StartSeconds", a."Type", a."UpdatedAt", a."Version"
+FROM (
+    SELECT g."Id", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+    FROM "GroundTruths" AS g
+    WHERE g."Id" = @__groundTruthId_0
+    LIMIT 1
+) AS g0
+LEFT JOIN "Annotations" AS a ON g0."Id" = a."GroundTruthId"
+ORDER BY g0."Id"
+2026-07-09 08:41:23.199 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation) in 5.2841ms
+2026-07-09 08:41:23.200 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-09 08:41:23.201 +03:00 [ERR] An exception occurred while iterating over the results of a query for context type 'RealityLens.Persistence.RealityLensDbContext'.
+Npgsql.PostgresException (0x80004005): 42703: column a.GroundTruthId does not exist
+
+POSITION: 641
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column a.GroundTruthId does not exist
+    Position: 641
+    File: parse_relation.c
+    Line: 3827
+    Routine: errorMissingColumn
+Npgsql.PostgresException (0x80004005): 42703: column a.GroundTruthId does not exist
+
+POSITION: 641
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column a.GroundTruthId does not exist
+    Position: 641
+    File: parse_relation.c
+    Line: 3827
+    Routine: errorMissingColumn
+2026-07-09 08:41:23.202 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/assessments/11b1a207-1430-41d9-96cb-61cf771a568e - 200 null application/json; charset=utf-8 14.0572ms
+2026-07-09 08:41:23.206 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation) in 9.1908ms
+2026-07-09 08:41:23.206 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation)'
+2026-07-09 08:41:23.211 +03:00 [ERR] An unhandled exception occurred.
+Npgsql.PostgresException (0x80004005): 42703: column a.GroundTruthId does not exist
+
+POSITION: 641
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at RealityLens.Persistence.Services.AnnotationService.GetByGroundTruthAsync(Guid groundTruthId) in C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Persistence\Services\AnnotationService.cs:line 42
+   at RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth(Guid groundTruthId) in C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation\Controllers\AnnotationController.cs:line 41
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at RealityLens.Presentation.Middleware.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation\Middleware\GlobalExceptionMiddleware.cs:line 27
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column a.GroundTruthId does not exist
+    Position: 641
+    File: parse_relation.c
+    Line: 3827
+    Routine: errorMissingColumn
+2026-07-09 08:41:23.218 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/annotations/groundtruth/c9e01e20-8b1f-4a9c-a828-b4109c8140c5 - 500 null application/problem+json 25.2694ms
+2026-07-09 08:41:26.283 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/assessments/11b1a207-1430-41d9-96cb-61cf771a568e - null null
+2026-07-09 08:41:26.283 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media - null null
+2026-07-09 08:41:26.285 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:41:26.287 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:41:26.288 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-09 08:41:26.289 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media - 204 null null 5.6206ms
+2026-07-09 08:41:26.289 +03:00 [INF] Route matched with {action = "GetById", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(System.Guid) on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-09 08:41:26.291 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media - null null
+2026-07-09 08:41:26.293 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:41:26.293 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation)'
+2026-07-09 08:41:26.294 +03:00 [INF] Route matched with {action = "GetAll", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-09 08:41:26.296 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."Checksum", m."CreatedAt", m."DurationInSeconds", m."Extension", m."FileSize", m."Height", m."IsDeleted", m."MimeType", m."OriginalFileName", m."ProcessingError", m."Status", m."StoragePath", m."ThumbnailPath", m."UpdatedAt", m."UploadedAt", m."UploadedByUserId", m."Version", m."Width"
+FROM "Media" AS m
+2026-07-09 08:41:26.296 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version", g."Id", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "Assessments" AS a
+LEFT JOIN "GroundTruths" AS g ON a."Id" = g."AssessmentId"
+WHERE a."Id" = @__id_0
+LIMIT 1
+2026-07-09 08:41:26.297 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+ListSelectIterator`2[[RealityLens.Domain.Entities.Media, RealityLens.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RealityLens.Application.DTOs.MediaResponse, RealityLens.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-09 08:41:26.298 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AssessmentDetailResponse'.
+2026-07-09 08:41:26.299 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation) in 3.9978ms
+2026-07-09 08:41:26.299 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation) in 8.0998ms
+2026-07-09 08:41:26.300 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation)'
+2026-07-09 08:41:26.300 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-09 08:41:26.302 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media - 200 null application/json; charset=utf-8 11.6192ms
+2026-07-09 08:41:26.303 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/assessments/11b1a207-1430-41d9-96cb-61cf771a568e - 200 null application/json; charset=utf-8 20.1418ms
+2026-07-09 08:41:36.189 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/annotations - null null
+2026-07-09 08:41:36.191 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:41:36.192 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/annotations - 204 null null 2.6547ms
+2026-07-09 08:41:36.193 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5128/api/annotations - application/json 187
+2026-07-09 08:41:36.194 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:41:36.195 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AnnotationController.Create (RealityLens.Presentation)'
+2026-07-09 08:41:36.198 +03:00 [INF] Route matched with {action = "Create", controller = "Annotation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(RealityLens.Application.DTOs.CreateAnnotationRequest) on controller RealityLens.Presentation.Controllers.AnnotationController (RealityLens.Presentation).
+2026-07-09 08:41:36.258 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT g."Id", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "GroundTruths" AS g
+WHERE g."Id" = @__p_0
+LIMIT 1
+2026-07-09 08:41:36.276 +03:00 [ERR] Failed executing DbCommand (5ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = Single), @p4='?' (DbType = Object), @p5='?' (DbType = Guid), @p6='?' (DbType = Boolean), @p7='?' (DbType = Guid), @p8='?' (DbType = Single), @p9='?', @p10='?' (DbType = DateTime), @p11='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Annotations" ("Id", "CreatedAt", "CreatedBy", "EndSeconds", "GeometryData", "GroundTruthId", "IsDeleted", "ParticipantAnswerId", "StartSeconds", "Type", "UpdatedAt", "Version")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+2026-07-09 08:41:36.282 +03:00 [ERR] An exception occurred in the database while saving changes for context type 'RealityLens.Persistence.RealityLensDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 42703: column "GroundTruthId" of relation "Annotations" does not exist
+
+POSITION: 90
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column "GroundTruthId" of relation "Annotations" does not exist
+    Position: 90
+    File: parse_target.c
+    Line: 1073
+    Routine: checkInsertTargets
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 42703: column "GroundTruthId" of relation "Annotations" does not exist
+
+POSITION: 90
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column "GroundTruthId" of relation "Annotations" does not exist
+    Position: 90
+    File: parse_target.c
+    Line: 1073
+    Routine: checkInsertTargets
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2026-07-09 08:41:36.312 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AnnotationController.Create (RealityLens.Presentation) in 113.7851ms
+2026-07-09 08:41:36.314 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AnnotationController.Create (RealityLens.Presentation)'
+2026-07-09 08:41:36.321 +03:00 [ERR] An unhandled exception occurred.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 42703: column "GroundTruthId" of relation "Annotations" does not exist
+
+POSITION: 90
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column "GroundTruthId" of relation "Annotations" does not exist
+    Position: 90
+    File: parse_target.c
+    Line: 1073
+    Routine: checkInsertTargets
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at RealityLens.Persistence.Services.AnnotationService.CreateAsync(CreateAnnotationRequest request, Guid userId) in C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Persistence\Services\AnnotationService.cs:line 96
+   at RealityLens.Presentation.Controllers.AnnotationController.Create(CreateAnnotationRequest request) in C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation\Controllers\AnnotationController.cs:line 68
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at RealityLens.Presentation.Middleware.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation\Middleware\GlobalExceptionMiddleware.cs:line 27
+2026-07-09 08:41:36.328 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5128/api/annotations - 500 null application/problem+json 134.7978ms
+2026-07-09 08:43:06.297 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/annotations - null null
+2026-07-09 08:43:06.299 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:43:06.301 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/annotations - 204 null null 3.456ms
+2026-07-09 08:43:06.302 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5128/api/annotations - application/json 185
+2026-07-09 08:43:06.303 +03:00 [INF] CORS policy execution successful.
+2026-07-09 08:43:06.304 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AnnotationController.Create (RealityLens.Presentation)'
+2026-07-09 08:43:06.305 +03:00 [INF] Route matched with {action = "Create", controller = "Annotation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(RealityLens.Application.DTOs.CreateAnnotationRequest) on controller RealityLens.Presentation.Controllers.AnnotationController (RealityLens.Presentation).
+2026-07-09 08:43:06.309 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT g."Id", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "GroundTruths" AS g
+WHERE g."Id" = @__p_0
+LIMIT 1
+2026-07-09 08:43:06.311 +03:00 [ERR] Failed executing DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = Single), @p4='?' (DbType = Object), @p5='?' (DbType = Guid), @p6='?' (DbType = Boolean), @p7='?' (DbType = Guid), @p8='?' (DbType = Single), @p9='?', @p10='?' (DbType = DateTime), @p11='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Annotations" ("Id", "CreatedAt", "CreatedBy", "EndSeconds", "GeometryData", "GroundTruthId", "IsDeleted", "ParticipantAnswerId", "StartSeconds", "Type", "UpdatedAt", "Version")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+2026-07-09 08:43:06.314 +03:00 [ERR] An exception occurred in the database while saving changes for context type 'RealityLens.Persistence.RealityLensDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 42703: column "GroundTruthId" of relation "Annotations" does not exist
+
+POSITION: 90
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column "GroundTruthId" of relation "Annotations" does not exist
+    Position: 90
+    File: parse_target.c
+    Line: 1073
+    Routine: checkInsertTargets
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 42703: column "GroundTruthId" of relation "Annotations" does not exist
+
+POSITION: 90
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column "GroundTruthId" of relation "Annotations" does not exist
+    Position: 90
+    File: parse_target.c
+    Line: 1073
+    Routine: checkInsertTargets
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2026-07-09 08:43:06.318 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AnnotationController.Create (RealityLens.Presentation) in 12.2945ms
+2026-07-09 08:43:06.318 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AnnotationController.Create (RealityLens.Presentation)'
+2026-07-09 08:43:06.324 +03:00 [ERR] An unhandled exception occurred.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 42703: column "GroundTruthId" of relation "Annotations" does not exist
+
+POSITION: 90
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column "GroundTruthId" of relation "Annotations" does not exist
+    Position: 90
+    File: parse_target.c
+    Line: 1073
+    Routine: checkInsertTargets
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at RealityLens.Persistence.Services.AnnotationService.CreateAsync(CreateAnnotationRequest request, Guid userId) in C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Persistence\Services\AnnotationService.cs:line 96
+   at RealityLens.Presentation.Controllers.AnnotationController.Create(CreateAnnotationRequest request) in C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation\Controllers\AnnotationController.cs:line 68
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at RealityLens.Presentation.Middleware.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation\Middleware\GlobalExceptionMiddleware.cs:line 27
+2026-07-09 08:43:06.331 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5128/api/annotations - 500 null application/problem+json 28.7339ms

@@ -1,0 +1,78 @@
+2026-07-02 18:20:53.848 +03:00 [FTL] Application terminated unexpectedly
+Microsoft.Extensions.Hosting.HostAbortedException: The host was aborted.
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.ThrowHostAborted()
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.OnNext(KeyValuePair`2 value)
+   at System.Diagnostics.DiagnosticListener.Write(String name, Object value)
+   at Microsoft.Extensions.Hosting.HostBuilder.ResolveHost(IServiceProvider serviceProvider, DiagnosticListener diagnosticListener)
+   at Microsoft.Extensions.Hosting.HostApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build()
+   at Program.<Main>$(String[] args) in C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation\Program.cs:line 75
+2026-07-02 18:21:59.225 +03:00 [INF] User profile is available. Using 'C:\Users\mustafa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-07-02 18:21:59.293 +03:00 [INF] Now listening on: http://localhost:5128
+2026-07-02 18:21:59.295 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-02 18:21:59.295 +03:00 [INF] Hosting environment: Development
+2026-07-02 18:21:59.295 +03:00 [INF] Content root path: C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation
+2026-07-02 18:23:17.816 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5128/api/media/upload - multipart/form-data; boundary=4e4029a1dc2c2a78953b890a2a9a87c9 426481
+2026-07-02 18:23:17.844 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-07-02 18:23:17.862 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.Upload (RealityLens.Presentation)'
+2026-07-02 18:23:17.876 +03:00 [INF] Route matched with {action = "Upload", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Upload(Microsoft.AspNetCore.Http.IFormFile) on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-02 18:23:17.974 +03:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2026-07-02 18:23:18.026 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.Upload (RealityLens.Presentation) in 148.0148ms
+2026-07-02 18:23:18.033 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.Upload (RealityLens.Presentation)'
+2026-07-02 18:23:18.036 +03:00 [INF] HTTP POST /api/media/upload responded 401 in 192.2577 ms
+2026-07-02 18:23:18.041 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5128/api/media/upload - 401 null application/problem+json; charset=utf-8 225.5317ms
+2026-07-02 18:23:48.871 +03:00 [INF] User profile is available. Using 'C:\Users\mustafa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-07-02 18:23:48.945 +03:00 [INF] Now listening on: http://localhost:5128
+2026-07-02 18:23:48.947 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-02 18:23:48.947 +03:00 [INF] Hosting environment: Development
+2026-07-02 18:23:48.947 +03:00 [INF] Content root path: C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation
+2026-07-02 18:24:07.008 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5128/api/media/upload - multipart/form-data; boundary=d8fa3d685c683967f20faec90fd472cd 426481
+2026-07-02 18:24:07.036 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-07-02 18:24:07.055 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.Upload (RealityLens.Presentation)'
+2026-07-02 18:24:07.071 +03:00 [INF] Route matched with {action = "Upload", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Upload(Microsoft.AspNetCore.Http.IFormFile) on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-02 18:24:07.185 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.Upload (RealityLens.Presentation) in 111.5313ms
+2026-07-02 18:24:07.194 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.Upload (RealityLens.Presentation)'
+2026-07-02 18:24:07.196 +03:00 [ERR] HTTP POST /api/media/upload responded 500 in 159.7506 ms
+System.ArgumentException: Invalid file signature.
+   at RealityLens.Infrastructure.Storage.FileValidator.Validate(Stream fileStream, String fileName, String contentType) in C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Infrastructure\Storage\FileValidator.cs:line 38
+   at RealityLens.Persistence.Services.MediaService.UploadAsync(UploadMediaRequest request) in C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Persistence\Services\MediaService.cs:line 72
+   at RealityLens.Presentation.Controllers.MediaController.Upload(IFormFile file) in C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation\Controllers\MediaController.cs:line 95
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-07-02 18:24:07.222 +03:00 [ERR] An unhandled exception occurred.
+System.ArgumentException: Invalid file signature.
+   at RealityLens.Infrastructure.Storage.FileValidator.Validate(Stream fileStream, String fileName, String contentType) in C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Infrastructure\Storage\FileValidator.cs:line 38
+   at RealityLens.Persistence.Services.MediaService.UploadAsync(UploadMediaRequest request) in C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Persistence\Services\MediaService.cs:line 72
+   at RealityLens.Presentation.Controllers.MediaController.Upload(IFormFile file) in C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation\Controllers\MediaController.cs:line 95
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at RealityLens.Presentation.Middleware.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation\Middleware\GlobalExceptionMiddleware.cs:line 26
+2026-07-02 18:24:07.262 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5128/api/media/upload - 400 null application/json 254.012ms

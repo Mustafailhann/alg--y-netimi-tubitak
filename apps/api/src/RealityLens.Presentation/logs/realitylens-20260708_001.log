@@ -1,0 +1,1249 @@
+2026-07-08 22:58:45.990 +03:00 [INF] User profile is available. Using 'C:\Users\mustafa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-07-08 22:58:46.128 +03:00 [ERR] Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5128: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Normal olarak her yuva adresi (iletişim kuralı/ağ adresi/bağlantı noktası) için yalnızca bir kullanıma izin veriliyor.
+ ---> System.Net.Sockets.SocketException (10048): Normal olarak her yuva adresi (iletişim kuralı/ağ adresi/bağlantı noktası) için yalnızca bir kullanıma izin veriliyor.
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-07-08 23:00:12.710 +03:00 [INF] User profile is available. Using 'C:\Users\mustafa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-07-08 23:00:12.772 +03:00 [INF] Now listening on: http://localhost:5128
+2026-07-08 23:00:12.774 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-08 23:00:12.775 +03:00 [INF] Hosting environment: Development
+2026-07-08 23:00:12.776 +03:00 [INF] Content root path: C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation
+2026-07-08 23:01:00.556 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/v1/training-packs?teacherId=55555555-5555-5555-5555-555555555555&page=1&pageSize=20 - null null
+2026-07-08 23:01:00.615 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-07-08 23:01:00.616 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:01:00.632 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.v1.TrainingPackController.GetMyPacks (RealityLens.Presentation)'
+2026-07-08 23:01:00.651 +03:00 [INF] Route matched with {action = "GetMyPacks", controller = "TrainingPack"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[RealityLens.Application.CQRS.Queries.TrainingPacks.TrainingPackDto]]] GetMyPacks(System.Guid, System.Threading.CancellationToken) on controller RealityLens.Presentation.Controllers.v1.TrainingPackController (RealityLens.Presentation).
+2026-07-08 23:01:02.390 +03:00 [INF] Executed DbCommand (39ms) [Parameters=[@__query_TeacherId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."Title", t."Status", t."EstimatedDuration", (
+    SELECT count(*)::int
+    FROM "TrainingItems" AS t0
+    WHERE NOT (t0."IsDeleted") AND t."Id" = t0."TrainingPackId"), t."Version"
+FROM "TrainingPacks" AS t
+WHERE NOT (t."IsDeleted") AND t."TeacherId" = @__query_TeacherId_0
+2026-07-08 23:01:02.420 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[RealityLens.Application.CQRS.Queries.TrainingPacks.TrainingPackDto, RealityLens.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-08 23:01:02.477 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.v1.TrainingPackController.GetMyPacks (RealityLens.Presentation) in 1822.4995ms
+2026-07-08 23:01:02.481 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.v1.TrainingPackController.GetMyPacks (RealityLens.Presentation)'
+2026-07-08 23:01:02.493 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/v1/training-packs?teacherId=55555555-5555-5555-5555-555555555555&page=1&pageSize=20 - 200 null application/json; charset=utf-8 1937.8165ms
+2026-07-08 23:01:05.829 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/v1/training-packs/239034f4-e6e4-46d0-8523-f5666d3959e2?teacherId=55555555-5555-5555-5555-555555555555 - null null
+2026-07-08 23:01:05.829 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/v1/training-packs/239034f4-e6e4-46d0-8523-f5666d3959e2/items?teacherId=55555555-5555-5555-5555-555555555555 - null null
+2026-07-08 23:01:05.833 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:01:05.833 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:01:05.834 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.v1.TrainingPackController.GetPackItems (RealityLens.Presentation)'
+2026-07-08 23:01:05.835 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.v1.TrainingPackController.GetById (RealityLens.Presentation)'
+2026-07-08 23:01:05.839 +03:00 [INF] Route matched with {action = "GetById", controller = "TrainingPack"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[RealityLens.Application.CQRS.Queries.TrainingPacks.TrainingPackDetailDto]] GetById(System.Guid, System.Guid, System.Threading.CancellationToken) on controller RealityLens.Presentation.Controllers.v1.TrainingPackController (RealityLens.Presentation).
+2026-07-08 23:01:05.839 +03:00 [INF] Route matched with {action = "GetPackItems", controller = "TrainingPack"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[RealityLens.Application.CQRS.Queries.TrainingPacks.TrainingItemDto]]] GetPackItems(System.Guid, System.Guid, System.Threading.CancellationToken) on controller RealityLens.Presentation.Controllers.v1.TrainingPackController (RealityLens.Presentation).
+2026-07-08 23:01:05.909 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__query_PackId_0='?' (DbType = Guid), @__query_TeacherId_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."TeacherId", t."Title", t."Status", t."EstimatedDuration", t."Version", t."CreatedAt"
+FROM "TrainingPacks" AS t
+WHERE NOT (t."IsDeleted") AND t."Id" = @__query_PackId_0 AND t."TeacherId" = @__query_TeacherId_1
+LIMIT 1
+2026-07-08 23:01:05.918 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.CQRS.Queries.TrainingPacks.TrainingPackDetailDto'.
+2026-07-08 23:01:05.930 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.v1.TrainingPackController.GetById (RealityLens.Presentation) in 89.8329ms
+2026-07-08 23:01:05.930 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.v1.TrainingPackController.GetById (RealityLens.Presentation)'
+2026-07-08 23:01:05.934 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/v1/training-packs/239034f4-e6e4-46d0-8523-f5666d3959e2?teacherId=55555555-5555-5555-5555-555555555555 - 200 null application/json; charset=utf-8 105.407ms
+2026-07-08 23:01:05.942 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__query_PackId_0='?' (DbType = Guid), @__query_TeacherId_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "TrainingPacks" AS t
+    WHERE NOT (t."IsDeleted") AND t."Id" = @__query_PackId_0 AND t."TeacherId" = @__query_TeacherId_1)
+2026-07-08 23:01:05.972 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[@__query_PackId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."AssessmentId", t."OrderIndex", a."Question", m."MimeType"
+FROM "TrainingItems" AS t
+INNER JOIN "Assessments" AS a ON t."AssessmentId" = a."Id"
+INNER JOIN "Media" AS m ON a."MediaId" = m."Id"
+WHERE NOT (t."IsDeleted") AND t."TrainingPackId" = @__query_PackId_0
+ORDER BY t."OrderIndex"
+2026-07-08 23:01:05.974 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[RealityLens.Application.CQRS.Queries.TrainingPacks.TrainingItemDto, RealityLens.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-08 23:01:05.976 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.v1.TrainingPackController.GetPackItems (RealityLens.Presentation) in 135.3083ms
+2026-07-08 23:01:05.977 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.v1.TrainingPackController.GetPackItems (RealityLens.Presentation)'
+2026-07-08 23:01:05.978 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/v1/training-packs/239034f4-e6e4-46d0-8523-f5666d3959e2/items?teacherId=55555555-5555-5555-5555-555555555555 - 200 null application/json; charset=utf-8 150.0276ms
+2026-07-08 23:01:18.301 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media - null null
+2026-07-08 23:01:18.305 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:01:18.309 +03:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Administrator|Teacher)
+2026-07-08 23:01:18.312 +03:00 [INF] AuthenticationScheme: Bearer was challenged.
+2026-07-08 23:01:18.313 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media - 401 0 null 12.5609ms
+2026-07-08 23:01:47.332 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/auth/login - null null
+2026-07-08 23:01:47.334 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:01:47.336 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/auth/login - 204 null null 3.7196ms
+2026-07-08 23:01:47.338 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5128/api/auth/login - application/json 59
+2026-07-08 23:01:47.341 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:01:47.341 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AuthController.Login (RealityLens.Presentation)'
+2026-07-08 23:01:47.345 +03:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(RealityLens.Application.DTOs.Auth.LoginRequest, System.Threading.CancellationToken) on controller RealityLens.Presentation.Controllers.AuthController (RealityLens.Presentation).
+2026-07-08 23:01:47.441 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[@__request_Email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."IsActive", u."IsDeleted", u."PasswordHash", u."RoleId", u."UpdatedAt", u."Version", r."Id", r."CreatedAt", r."IsDeleted", r."Name", r."UpdatedAt", r."Version"
+FROM "Users" AS u
+INNER JOIN "Roles" AS r ON u."RoleId" = r."Id"
+WHERE u."Email" = @__request_Email_0
+LIMIT 1
+2026-07-08 23:01:47.742 +03:00 [INF] Executed DbCommand (16ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = Boolean), @p4='?' (DbType = DateTime), @p5='?', @p6='?' (DbType = DateTime), @p7='?' (DbType = Guid), @p8='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "ExpiresAt", "IsDeleted", "RevokedAt", "Token", "UpdatedAt", "UserId", "Version")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2026-07-08 23:01:47.751 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.Auth.AuthenticationResponse'.
+2026-07-08 23:01:47.753 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AuthController.Login (RealityLens.Presentation) in 407.6321ms
+2026-07-08 23:01:47.754 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AuthController.Login (RealityLens.Presentation)'
+2026-07-08 23:01:47.756 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5128/api/auth/login - 200 null application/json; charset=utf-8 417.6165ms
+2026-07-08 23:01:51.165 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media - null null
+2026-07-08 23:01:51.167 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:01:51.169 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media - 204 null null 4.1872ms
+2026-07-08 23:01:51.170 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media - null null
+2026-07-08 23:01:51.171 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:01:51.203 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:01:51.208 +03:00 [INF] Route matched with {action = "GetAll", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-08 23:01:51.219 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."Checksum", m."CreatedAt", m."DurationInSeconds", m."Extension", m."FileSize", m."Height", m."IsDeleted", m."MimeType", m."OriginalFileName", m."ProcessingError", m."Status", m."StoragePath", m."ThumbnailPath", m."UpdatedAt", m."UploadedAt", m."UploadedByUserId", m."Version", m."Width"
+FROM "Media" AS m
+2026-07-08 23:01:51.250 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+ListSelectIterator`2[[RealityLens.Domain.Entities.Media, RealityLens.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RealityLens.Application.DTOs.MediaResponse, RealityLens.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-08 23:01:51.267 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation) in 57.76ms
+2026-07-08 23:01:51.268 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:01:51.270 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media - 200 null application/json; charset=utf-8 99.5217ms
+2026-07-08 23:01:51.383 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media/4ff54669-16a0-4ae6-a2fc-49745c8aa979/thumbnail - null null
+2026-07-08 23:01:51.385 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:01:51.387 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media/4ff54669-16a0-4ae6-a2fc-49745c8aa979/thumbnail - 204 null null 3.4497ms
+2026-07-08 23:01:51.388 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media/7de23393-6aae-4cbe-a179-e818c6ff09f0/thumbnail - null null
+2026-07-08 23:01:51.388 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media/4ff54669-16a0-4ae6-a2fc-49745c8aa979/thumbnail - null null
+2026-07-08 23:01:51.389 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media/eb2b4f8a-32fa-4b89-aca7-56b2878b00ca/thumbnail - null null
+2026-07-08 23:01:51.390 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:01:51.390 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media/771bd27f-28db-46f7-9d41-f6287f52969c/thumbnail - null null
+2026-07-08 23:01:51.391 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:01:51.392 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:01:51.393 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:01:51.395 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media/7de23393-6aae-4cbe-a179-e818c6ff09f0/thumbnail - 204 null null 6.708ms
+2026-07-08 23:01:51.396 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media/eb2b4f8a-32fa-4b89-aca7-56b2878b00ca/thumbnail - 204 null null 6.6302ms
+2026-07-08 23:01:51.397 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-08 23:01:51.398 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media/7de23393-6aae-4cbe-a179-e818c6ff09f0/thumbnail - null null
+2026-07-08 23:01:51.399 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media/771bd27f-28db-46f7-9d41-f6287f52969c/thumbnail - 204 null null 8.2281ms
+2026-07-08 23:01:51.400 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media/eb2b4f8a-32fa-4b89-aca7-56b2878b00ca/thumbnail - null null
+2026-07-08 23:01:51.402 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:01:51.403 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media/771bd27f-28db-46f7-9d41-f6287f52969c/thumbnail - null null
+2026-07-08 23:01:51.403 +03:00 [INF] Route matched with {action = "GetThumbnail", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetThumbnail(System.Guid) on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-08 23:01:51.404 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:01:51.405 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-08 23:01:51.405 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:01:51.407 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-08 23:01:51.407 +03:00 [INF] Route matched with {action = "GetThumbnail", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetThumbnail(System.Guid) on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-08 23:01:51.407 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-08 23:01:51.408 +03:00 [INF] Route matched with {action = "GetThumbnail", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetThumbnail(System.Guid) on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-08 23:01:51.409 +03:00 [INF] Route matched with {action = "GetThumbnail", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetThumbnail(System.Guid) on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-08 23:01:51.423 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."Checksum", m."CreatedAt", m."DurationInSeconds", m."Extension", m."FileSize", m."Height", m."IsDeleted", m."MimeType", m."OriginalFileName", m."ProcessingError", m."Status", m."StoragePath", m."ThumbnailPath", m."UpdatedAt", m."UploadedAt", m."UploadedByUserId", m."Version", m."Width"
+FROM "Media" AS m
+WHERE m."Id" = @__p_0
+LIMIT 1
+2026-07-08 23:01:51.423 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."Checksum", m."CreatedAt", m."DurationInSeconds", m."Extension", m."FileSize", m."Height", m."IsDeleted", m."MimeType", m."OriginalFileName", m."ProcessingError", m."Status", m."StoragePath", m."ThumbnailPath", m."UpdatedAt", m."UploadedAt", m."UploadedByUserId", m."Version", m."Width"
+FROM "Media" AS m
+WHERE m."Id" = @__p_0
+LIMIT 1
+2026-07-08 23:01:51.429 +03:00 [INF] Executing PhysicalFileResult, sending file 'C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation\wwwroot\uploads\thumbnails\dcf931a49aeb4e18a43030f83c3c32b1.webp' with download name '' ...
+2026-07-08 23:01:51.429 +03:00 [INF] Executing PhysicalFileResult, sending file 'C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation\wwwroot\uploads\thumbnails\66ec86609f784c05bbf8d64476e7c216.webp' with download name '' ...
+2026-07-08 23:01:51.446 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation) in 37.9608ms
+2026-07-08 23:01:51.446 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation) in 35.9193ms
+2026-07-08 23:01:51.448 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-08 23:01:51.449 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-08 23:01:51.452 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media/7de23393-6aae-4cbe-a179-e818c6ff09f0/thumbnail - 200 44 image/webp 53.9108ms
+2026-07-08 23:01:51.453 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media/771bd27f-28db-46f7-9d41-f6287f52969c/thumbnail - 200 13928 image/webp 49.5282ms
+2026-07-08 23:01:51.466 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."Checksum", m."CreatedAt", m."DurationInSeconds", m."Extension", m."FileSize", m."Height", m."IsDeleted", m."MimeType", m."OriginalFileName", m."ProcessingError", m."Status", m."StoragePath", m."ThumbnailPath", m."UpdatedAt", m."UploadedAt", m."UploadedByUserId", m."Version", m."Width"
+FROM "Media" AS m
+WHERE m."Id" = @__p_0
+LIMIT 1
+2026-07-08 23:01:51.466 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."Checksum", m."CreatedAt", m."DurationInSeconds", m."Extension", m."FileSize", m."Height", m."IsDeleted", m."MimeType", m."OriginalFileName", m."ProcessingError", m."Status", m."StoragePath", m."ThumbnailPath", m."UpdatedAt", m."UploadedAt", m."UploadedByUserId", m."Version", m."Width"
+FROM "Media" AS m
+WHERE m."Id" = @__p_0
+LIMIT 1
+2026-07-08 23:01:51.468 +03:00 [INF] Executing PhysicalFileResult, sending file 'C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation\wwwroot\uploads\thumbnails\a3d4c2b8bd824442a37a4f438c245b44.webp' with download name '' ...
+2026-07-08 23:01:51.469 +03:00 [INF] Executing PhysicalFileResult, sending file 'C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation\wwwroot\uploads\thumbnails\22db039ac6c14357b2b57b2f5ee61827.webp' with download name '' ...
+2026-07-08 23:01:51.481 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation) in 71.3139ms
+2026-07-08 23:01:51.481 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation) in 74.8935ms
+2026-07-08 23:01:51.482 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-08 23:01:51.483 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-08 23:01:51.485 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media/eb2b4f8a-32fa-4b89-aca7-56b2878b00ca/thumbnail - 200 218 image/webp 84.5536ms
+2026-07-08 23:01:51.486 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media/4ff54669-16a0-4ae6-a2fc-49745c8aa979/thumbnail - 200 206 image/webp 97.6214ms
+2026-07-08 23:02:08.187 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media/upload - null null
+2026-07-08 23:02:08.189 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:02:08.191 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media/upload - 204 null null 3.8013ms
+2026-07-08 23:02:08.192 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5128/api/media/upload - multipart/form-data; boundary=--dio-boundary-3801385912 2380806
+2026-07-08 23:02:08.195 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:02:08.196 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.Upload (RealityLens.Presentation)'
+2026-07-08 23:02:08.199 +03:00 [INF] Route matched with {action = "Upload", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Upload(Microsoft.AspNetCore.Http.IFormFile) on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-08 23:02:08.242 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__checksum_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Media" AS m
+    WHERE m."Checksum" = @__checksum_0)
+2026-07-08 23:02:09.503 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = DateTime), @p3='?' (DbType = Double), @p4='?', @p5='?' (DbType = Int64), @p6='?' (DbType = Int32), @p7='?' (DbType = Boolean), @p8='?', @p9='?', @p10='?', @p11='?', @p12='?', @p13='?', @p14='?' (DbType = DateTime), @p15='?' (DbType = DateTime), @p16='?' (DbType = Guid), @p17='?' (DbType = Guid), @p18='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Media" ("Id", "Checksum", "CreatedAt", "DurationInSeconds", "Extension", "FileSize", "Height", "IsDeleted", "MimeType", "OriginalFileName", "ProcessingError", "Status", "StoragePath", "ThumbnailPath", "UpdatedAt", "UploadedAt", "UploadedByUserId", "Version", "Width")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18);
+2026-07-08 23:02:09.507 +03:00 [INF] Executing CreatedAtActionResult, writing value of type 'RealityLens.Application.DTOs.MediaResponse'.
+2026-07-08 23:02:09.531 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.Upload (RealityLens.Presentation) in 1330.5431ms
+2026-07-08 23:02:09.531 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.Upload (RealityLens.Presentation)'
+2026-07-08 23:02:09.534 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5128/api/media/upload - 201 null application/json; charset=utf-8 1341.5428ms
+2026-07-08 23:02:09.699 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media - null null
+2026-07-08 23:02:09.701 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:02:09.702 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media - 204 null null 3.4021ms
+2026-07-08 23:02:09.704 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media - null null
+2026-07-08 23:02:09.705 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:02:09.706 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:02:09.707 +03:00 [INF] Route matched with {action = "GetAll", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-08 23:02:09.709 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."Checksum", m."CreatedAt", m."DurationInSeconds", m."Extension", m."FileSize", m."Height", m."IsDeleted", m."MimeType", m."OriginalFileName", m."ProcessingError", m."Status", m."StoragePath", m."ThumbnailPath", m."UpdatedAt", m."UploadedAt", m."UploadedByUserId", m."Version", m."Width"
+FROM "Media" AS m
+2026-07-08 23:02:09.710 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+ListSelectIterator`2[[RealityLens.Domain.Entities.Media, RealityLens.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RealityLens.Application.DTOs.MediaResponse, RealityLens.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-08 23:02:09.711 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation) in 3.52ms
+2026-07-08 23:02:09.712 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:02:09.713 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media - 200 null application/json; charset=utf-8 9.016ms
+2026-07-08 23:02:09.811 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media/313766aa-af37-45e9-94ee-f0d4254a0075/thumbnail - null null
+2026-07-08 23:02:09.813 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:02:09.815 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media/313766aa-af37-45e9-94ee-f0d4254a0075/thumbnail - 204 null null 3.4013ms
+2026-07-08 23:02:09.816 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media/313766aa-af37-45e9-94ee-f0d4254a0075/thumbnail - null null
+2026-07-08 23:02:09.818 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:02:09.818 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-08 23:02:09.819 +03:00 [INF] Route matched with {action = "GetThumbnail", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetThumbnail(System.Guid) on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-08 23:02:09.825 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."Checksum", m."CreatedAt", m."DurationInSeconds", m."Extension", m."FileSize", m."Height", m."IsDeleted", m."MimeType", m."OriginalFileName", m."ProcessingError", m."Status", m."StoragePath", m."ThumbnailPath", m."UpdatedAt", m."UploadedAt", m."UploadedByUserId", m."Version", m."Width"
+FROM "Media" AS m
+WHERE m."Id" = @__p_0
+LIMIT 1
+2026-07-08 23:02:09.826 +03:00 [INF] Executing PhysicalFileResult, sending file 'C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation\wwwroot\uploads\thumbnails\4b3ff933b94648809f389a0c3506e909.webp' with download name '' ...
+2026-07-08 23:02:09.831 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation) in 10.7622ms
+2026-07-08 23:02:09.832 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-08 23:02:09.833 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media/313766aa-af37-45e9-94ee-f0d4254a0075/thumbnail - 200 120140 image/webp 16.9091ms
+2026-07-08 23:02:22.534 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media/upload - null null
+2026-07-08 23:02:22.536 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:02:22.539 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media/upload - 204 null null 5.1779ms
+2026-07-08 23:02:22.543 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5128/api/media/upload - multipart/form-data; boundary=--dio-boundary-1293293153 10574822
+2026-07-08 23:02:22.544 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:02:22.545 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.Upload (RealityLens.Presentation)'
+2026-07-08 23:02:22.546 +03:00 [INF] Route matched with {action = "Upload", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Upload(Microsoft.AspNetCore.Http.IFormFile) on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-08 23:02:22.648 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__checksum_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Media" AS m
+    WHERE m."Checksum" = @__checksum_0)
+2026-07-08 23:02:23.049 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = DateTime), @p3='?' (DbType = Double), @p4='?', @p5='?' (DbType = Int64), @p6='?' (DbType = Int32), @p7='?' (DbType = Boolean), @p8='?', @p9='?', @p10='?', @p11='?', @p12='?', @p13='?', @p14='?' (DbType = DateTime), @p15='?' (DbType = DateTime), @p16='?' (DbType = Guid), @p17='?' (DbType = Guid), @p18='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Media" ("Id", "Checksum", "CreatedAt", "DurationInSeconds", "Extension", "FileSize", "Height", "IsDeleted", "MimeType", "OriginalFileName", "ProcessingError", "Status", "StoragePath", "ThumbnailPath", "UpdatedAt", "UploadedAt", "UploadedByUserId", "Version", "Width")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18);
+2026-07-08 23:02:23.052 +03:00 [INF] Executing CreatedAtActionResult, writing value of type 'RealityLens.Application.DTOs.MediaResponse'.
+2026-07-08 23:02:23.053 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.Upload (RealityLens.Presentation) in 506.0562ms
+2026-07-08 23:02:23.054 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.Upload (RealityLens.Presentation)'
+2026-07-08 23:02:23.059 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5128/api/media/upload - 201 null application/json; charset=utf-8 515.8711ms
+2026-07-08 23:02:23.193 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media - null null
+2026-07-08 23:02:23.195 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:02:23.198 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media - 204 null null 4.9653ms
+2026-07-08 23:02:23.199 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media - null null
+2026-07-08 23:02:23.201 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:02:23.202 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:02:23.203 +03:00 [INF] Route matched with {action = "GetAll", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-08 23:02:23.205 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."Checksum", m."CreatedAt", m."DurationInSeconds", m."Extension", m."FileSize", m."Height", m."IsDeleted", m."MimeType", m."OriginalFileName", m."ProcessingError", m."Status", m."StoragePath", m."ThumbnailPath", m."UpdatedAt", m."UploadedAt", m."UploadedByUserId", m."Version", m."Width"
+FROM "Media" AS m
+2026-07-08 23:02:23.206 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+ListSelectIterator`2[[RealityLens.Domain.Entities.Media, RealityLens.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RealityLens.Application.DTOs.MediaResponse, RealityLens.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-08 23:02:23.207 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation) in 3.7415ms
+2026-07-08 23:02:23.208 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:02:23.209 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media - 200 null application/json; charset=utf-8 9.7003ms
+2026-07-08 23:02:23.286 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media/6ae8033c-b876-40d3-b35d-3374faeaee76/thumbnail - null null
+2026-07-08 23:02:23.288 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:02:23.289 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media/6ae8033c-b876-40d3-b35d-3374faeaee76/thumbnail - 204 null null 2.7759ms
+2026-07-08 23:02:23.290 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media/6ae8033c-b876-40d3-b35d-3374faeaee76/thumbnail - null null
+2026-07-08 23:02:23.291 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:02:23.292 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-08 23:02:23.293 +03:00 [INF] Route matched with {action = "GetThumbnail", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetThumbnail(System.Guid) on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-08 23:02:23.295 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."Checksum", m."CreatedAt", m."DurationInSeconds", m."Extension", m."FileSize", m."Height", m."IsDeleted", m."MimeType", m."OriginalFileName", m."ProcessingError", m."Status", m."StoragePath", m."ThumbnailPath", m."UpdatedAt", m."UploadedAt", m."UploadedByUserId", m."Version", m."Width"
+FROM "Media" AS m
+WHERE m."Id" = @__p_0
+LIMIT 1
+2026-07-08 23:02:23.297 +03:00 [INF] Executing PhysicalFileResult, sending file 'C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation\wwwroot\uploads\thumbnails\22fa21023057454f8b1557ad33af9f20.webp' with download name '' ...
+2026-07-08 23:02:23.298 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation) in 4.8331ms
+2026-07-08 23:02:23.299 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-08 23:02:23.301 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media/6ae8033c-b876-40d3-b35d-3374faeaee76/thumbnail - 200 51210 image/webp 10.4775ms
+2026-07-08 23:02:49.514 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media/upload - null null
+2026-07-08 23:02:49.516 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:02:49.517 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media/upload - 204 null null 2.8964ms
+2026-07-08 23:02:49.519 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5128/api/media/upload - multipart/form-data; boundary=--dio-boundary-2513633710 2637658
+2026-07-08 23:02:49.521 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:02:49.522 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.Upload (RealityLens.Presentation)'
+2026-07-08 23:02:49.523 +03:00 [INF] Route matched with {action = "Upload", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Upload(Microsoft.AspNetCore.Http.IFormFile) on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-08 23:02:49.546 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__checksum_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Media" AS m
+    WHERE m."Checksum" = @__checksum_0)
+2026-07-08 23:02:49.721 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = DateTime), @p3='?' (DbType = Double), @p4='?', @p5='?' (DbType = Int64), @p6='?' (DbType = Int32), @p7='?' (DbType = Boolean), @p8='?', @p9='?', @p10='?', @p11='?', @p12='?', @p13='?', @p14='?' (DbType = DateTime), @p15='?' (DbType = DateTime), @p16='?' (DbType = Guid), @p17='?' (DbType = Guid), @p18='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Media" ("Id", "Checksum", "CreatedAt", "DurationInSeconds", "Extension", "FileSize", "Height", "IsDeleted", "MimeType", "OriginalFileName", "ProcessingError", "Status", "StoragePath", "ThumbnailPath", "UpdatedAt", "UploadedAt", "UploadedByUserId", "Version", "Width")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18);
+2026-07-08 23:02:49.723 +03:00 [INF] Executing CreatedAtActionResult, writing value of type 'RealityLens.Application.DTOs.MediaResponse'.
+2026-07-08 23:02:49.725 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.Upload (RealityLens.Presentation) in 201.3245ms
+2026-07-08 23:02:49.726 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.Upload (RealityLens.Presentation)'
+2026-07-08 23:02:49.728 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5128/api/media/upload - 201 null application/json; charset=utf-8 209.0074ms
+2026-07-08 23:02:49.856 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media - null null
+2026-07-08 23:02:49.858 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:02:49.859 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media - 204 null null 2.9791ms
+2026-07-08 23:02:49.861 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media - null null
+2026-07-08 23:02:49.862 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:02:49.863 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:02:49.864 +03:00 [INF] Route matched with {action = "GetAll", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-08 23:02:49.865 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."Checksum", m."CreatedAt", m."DurationInSeconds", m."Extension", m."FileSize", m."Height", m."IsDeleted", m."MimeType", m."OriginalFileName", m."ProcessingError", m."Status", m."StoragePath", m."ThumbnailPath", m."UpdatedAt", m."UploadedAt", m."UploadedByUserId", m."Version", m."Width"
+FROM "Media" AS m
+2026-07-08 23:02:49.867 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+ListSelectIterator`2[[RealityLens.Domain.Entities.Media, RealityLens.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RealityLens.Application.DTOs.MediaResponse, RealityLens.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-08 23:02:49.868 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation) in 3.4472ms
+2026-07-08 23:02:49.869 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:02:49.870 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media - 200 null application/json; charset=utf-8 8.8009ms
+2026-07-08 23:02:49.952 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media/9880a2e4-f42f-4e8b-9d5a-6ba75774710d/thumbnail - null null
+2026-07-08 23:02:49.954 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:02:49.955 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media/9880a2e4-f42f-4e8b-9d5a-6ba75774710d/thumbnail - 204 null null 3.552ms
+2026-07-08 23:02:49.957 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media/9880a2e4-f42f-4e8b-9d5a-6ba75774710d/thumbnail - null null
+2026-07-08 23:02:49.958 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:02:49.959 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-08 23:02:49.960 +03:00 [INF] Route matched with {action = "GetThumbnail", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetThumbnail(System.Guid) on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-08 23:02:49.962 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."Checksum", m."CreatedAt", m."DurationInSeconds", m."Extension", m."FileSize", m."Height", m."IsDeleted", m."MimeType", m."OriginalFileName", m."ProcessingError", m."Status", m."StoragePath", m."ThumbnailPath", m."UpdatedAt", m."UploadedAt", m."UploadedByUserId", m."Version", m."Width"
+FROM "Media" AS m
+WHERE m."Id" = @__p_0
+LIMIT 1
+2026-07-08 23:02:49.963 +03:00 [INF] Executing PhysicalFileResult, sending file 'C:\Users\mustafa\Desktop\algı yönetimi\RealityLens\apps\api\src\RealityLens.Presentation\wwwroot\uploads\thumbnails\8cb64e84b227480b85a43b12718a90b8.webp' with download name '' ...
+2026-07-08 23:02:49.965 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation) in 4.8927ms
+2026-07-08 23:02:49.967 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.GetThumbnail (RealityLens.Presentation)'
+2026-07-08 23:02:49.968 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media/9880a2e4-f42f-4e8b-9d5a-6ba75774710d/thumbnail - 200 51380 image/webp 11.3411ms
+2026-07-08 23:04:35.278 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/assessments - null null
+2026-07-08 23:04:35.280 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:04:35.281 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/assessments - 204 null null 2.9695ms
+2026-07-08 23:04:35.283 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/assessments - null null
+2026-07-08 23:04:35.286 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:04:35.288 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:04:35.292 +03:00 [INF] Route matched with {action = "GetAll", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-08 23:04:35.302 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version"
+FROM "Assessments" AS a
+WHERE a."Status" <> 'Archived'
+2026-07-08 23:04:35.320 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+ListSelectIterator`2[[RealityLens.Domain.Entities.Assessment, RealityLens.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RealityLens.Application.DTOs.AssessmentListResponse, RealityLens.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-08 23:04:35.326 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.GetAll (RealityLens.Presentation) in 33.4907ms
+2026-07-08 23:04:35.327 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:04:35.329 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/assessments - 200 null application/json; charset=utf-8 45.5551ms
+2026-07-08 23:04:38.784 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/8c978703-e9a6-4cfb-8203-5f6ffb96c3fc - null null
+2026-07-08 23:04:38.786 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:04:38.787 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/8c978703-e9a6-4cfb-8203-5f6ffb96c3fc - 204 null null 2.8841ms
+2026-07-08 23:04:38.789 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/assessments/8c978703-e9a6-4cfb-8203-5f6ffb96c3fc - null null
+2026-07-08 23:04:38.791 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:04:38.792 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:04:38.794 +03:00 [INF] Route matched with {action = "GetById", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(System.Guid) on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-08 23:04:38.816 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version", g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "Assessments" AS a
+LEFT JOIN "GroundTruths" AS g ON a."Id" = g."AssessmentId"
+WHERE a."Id" = @__id_0
+LIMIT 1
+2026-07-08 23:04:38.840 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AssessmentDetailResponse'.
+2026-07-08 23:04:38.853 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation) in 58.178ms
+2026-07-08 23:04:38.855 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:04:38.856 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/assessments/8c978703-e9a6-4cfb-8203-5f6ffb96c3fc - 200 null application/json; charset=utf-8 67.3279ms
+2026-07-08 23:04:39.029 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/groundtruth/c2c0c128-5c0a-41ca-a35f-bfc5a1d7c805 - null null
+2026-07-08 23:04:39.031 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:04:39.031 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/assessments/8c978703-e9a6-4cfb-8203-5f6ffb96c3fc - null null
+2026-07-08 23:04:39.033 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:04:39.034 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/groundtruth/c2c0c128-5c0a-41ca-a35f-bfc5a1d7c805 - 204 null null 4.7403ms
+2026-07-08 23:04:39.034 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:04:39.036 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/annotations/groundtruth/c2c0c128-5c0a-41ca-a35f-bfc5a1d7c805 - null null
+2026-07-08 23:04:39.036 +03:00 [INF] Route matched with {action = "GetById", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(System.Guid) on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-08 23:04:39.037 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:04:39.038 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation)'
+2026-07-08 23:04:39.041 +03:00 [INF] Route matched with {action = "GetByGroundTruth", controller = "Annotation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetByGroundTruth(System.Guid) on controller RealityLens.Presentation.Controllers.AnnotationController (RealityLens.Presentation).
+2026-07-08 23:04:39.043 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version", g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "Assessments" AS a
+LEFT JOIN "GroundTruths" AS g ON a."Id" = g."AssessmentId"
+WHERE a."Id" = @__id_0
+LIMIT 1
+2026-07-08 23:04:39.044 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AssessmentDetailResponse'.
+2026-07-08 23:04:39.045 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation) in 7.0777ms
+2026-07-08 23:04:39.045 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:04:39.047 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/assessments/8c978703-e9a6-4cfb-8203-5f6ffb96c3fc - 200 null application/json; charset=utf-8 15.4378ms
+2026-07-08 23:04:39.054 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__groundTruthId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "GroundTruths" AS g
+WHERE g."Id" = @__groundTruthId_0
+LIMIT 1
+2026-07-08 23:04:39.065 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__groundTruth_AnnotationId_Value_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."CreatedBy", a."EndSeconds", a."GeometryData", a."IsDeleted", a."StartSeconds", a."Type", a."UpdatedAt", a."Version"
+FROM "Annotations" AS a
+WHERE a."Id" = @__groundTruth_AnnotationId_Value_0
+LIMIT 1
+2026-07-08 23:04:39.072 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AnnotationResponse[]'.
+2026-07-08 23:04:39.082 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation) in 40.2759ms
+2026-07-08 23:04:39.083 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation)'
+2026-07-08 23:04:39.084 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/annotations/groundtruth/c2c0c128-5c0a-41ca-a35f-bfc5a1d7c805 - 200 null application/json; charset=utf-8 48.7703ms
+2026-07-08 23:04:53.828 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media - null null
+2026-07-08 23:04:53.829 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:04:53.831 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media - 204 null null 3.0945ms
+2026-07-08 23:04:53.832 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media - null null
+2026-07-08 23:04:53.834 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:04:53.834 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:04:53.835 +03:00 [INF] Route matched with {action = "GetAll", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-08 23:04:53.836 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."Checksum", m."CreatedAt", m."DurationInSeconds", m."Extension", m."FileSize", m."Height", m."IsDeleted", m."MimeType", m."OriginalFileName", m."ProcessingError", m."Status", m."StoragePath", m."ThumbnailPath", m."UpdatedAt", m."UploadedAt", m."UploadedByUserId", m."Version", m."Width"
+FROM "Media" AS m
+2026-07-08 23:04:53.838 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+ListSelectIterator`2[[RealityLens.Domain.Entities.Media, RealityLens.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RealityLens.Application.DTOs.MediaResponse, RealityLens.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-08 23:04:53.839 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation) in 3.6642ms
+2026-07-08 23:04:53.840 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:04:53.841 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media - 200 null application/json; charset=utf-8 8.414ms
+2026-07-08 23:05:21.385 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/assessments - null null
+2026-07-08 23:05:21.386 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:05:21.388 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/assessments - 204 null null 3.5344ms
+2026-07-08 23:05:21.390 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5128/api/assessments - application/json 88
+2026-07-08 23:05:21.391 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:05:21.392 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.Create (RealityLens.Presentation)'
+2026-07-08 23:05:21.396 +03:00 [INF] Route matched with {action = "Create", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(RealityLens.Application.DTOs.CreateAssessmentRequest) on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-08 23:05:21.413 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__request_MediaId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Media" AS m
+    WHERE m."Id" = @__request_MediaId_0)
+2026-07-08 23:05:21.429 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Boolean), @p3='?' (DbType = Guid), @p4='?', @p5='?', @p6='?' (DbType = DateTime), @p7='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Assessments" ("Id", "CreatedAt", "IsDeleted", "MediaId", "Question", "Status", "UpdatedAt", "Version")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2026-07-08 23:05:21.431 +03:00 [INF] Executing CreatedAtActionResult, writing value of type 'RealityLens.Application.DTOs.AssessmentDetailResponse'.
+2026-07-08 23:05:21.433 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.Create (RealityLens.Presentation) in 36.0198ms
+2026-07-08 23:05:21.434 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.Create (RealityLens.Presentation)'
+2026-07-08 23:05:21.436 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5128/api/assessments - 201 null application/json; charset=utf-8 45.9212ms
+2026-07-08 23:05:26.217 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/assessments - null null
+2026-07-08 23:05:26.219 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:05:26.220 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:05:26.220 +03:00 [INF] Route matched with {action = "GetAll", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-08 23:05:26.223 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version"
+FROM "Assessments" AS a
+WHERE a."Status" <> 'Archived'
+2026-07-08 23:05:26.224 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+ListSelectIterator`2[[RealityLens.Domain.Entities.Assessment, RealityLens.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RealityLens.Application.DTOs.AssessmentListResponse, RealityLens.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-08 23:05:26.224 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.GetAll (RealityLens.Presentation) in 3.2656ms
+2026-07-08 23:05:26.225 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:05:26.227 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/assessments - 200 null application/json; charset=utf-8 9.6038ms
+2026-07-08 23:05:36.579 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media - null null
+2026-07-08 23:05:36.581 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:05:36.582 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media - 204 null null 2.787ms
+2026-07-08 23:05:36.583 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media - null null
+2026-07-08 23:05:36.584 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:05:36.585 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:05:36.585 +03:00 [INF] Route matched with {action = "GetAll", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-08 23:05:36.587 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."Checksum", m."CreatedAt", m."DurationInSeconds", m."Extension", m."FileSize", m."Height", m."IsDeleted", m."MimeType", m."OriginalFileName", m."ProcessingError", m."Status", m."StoragePath", m."ThumbnailPath", m."UpdatedAt", m."UploadedAt", m."UploadedByUserId", m."Version", m."Width"
+FROM "Media" AS m
+2026-07-08 23:05:36.588 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+ListSelectIterator`2[[RealityLens.Domain.Entities.Media, RealityLens.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RealityLens.Application.DTOs.MediaResponse, RealityLens.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-08 23:05:36.589 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation) in 3.1576ms
+2026-07-08 23:05:36.590 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:05:36.591 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media - 200 null application/json; charset=utf-8 7.5236ms
+2026-07-08 23:05:57.588 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/assessments - null null
+2026-07-08 23:05:57.590 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:05:57.591 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/assessments - 204 null null 2.9843ms
+2026-07-08 23:05:57.593 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5128/api/assessments - application/json 86
+2026-07-08 23:05:57.594 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:05:57.595 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.Create (RealityLens.Presentation)'
+2026-07-08 23:05:57.596 +03:00 [INF] Route matched with {action = "Create", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(RealityLens.Application.DTOs.CreateAssessmentRequest) on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-08 23:05:57.602 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__request_MediaId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Media" AS m
+    WHERE m."Id" = @__request_MediaId_0)
+2026-07-08 23:05:57.605 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Boolean), @p3='?' (DbType = Guid), @p4='?', @p5='?', @p6='?' (DbType = DateTime), @p7='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Assessments" ("Id", "CreatedAt", "IsDeleted", "MediaId", "Question", "Status", "UpdatedAt", "Version")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2026-07-08 23:05:57.608 +03:00 [INF] Executing CreatedAtActionResult, writing value of type 'RealityLens.Application.DTOs.AssessmentDetailResponse'.
+2026-07-08 23:05:57.609 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.Create (RealityLens.Presentation) in 11.7905ms
+2026-07-08 23:05:57.609 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.Create (RealityLens.Presentation)'
+2026-07-08 23:05:57.610 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5128/api/assessments - 201 null application/json; charset=utf-8 17.7892ms
+2026-07-08 23:06:16.224 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/assessments - null null
+2026-07-08 23:06:16.226 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:16.227 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/assessments - 204 null null 3.5921ms
+2026-07-08 23:06:16.229 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5128/api/assessments - application/json 86
+2026-07-08 23:06:16.230 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:16.232 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.Create (RealityLens.Presentation)'
+2026-07-08 23:06:16.232 +03:00 [INF] Route matched with {action = "Create", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(RealityLens.Application.DTOs.CreateAssessmentRequest) on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-08 23:06:16.371 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__request_MediaId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Media" AS m
+    WHERE m."Id" = @__request_MediaId_0)
+2026-07-08 23:06:16.374 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Boolean), @p3='?' (DbType = Guid), @p4='?', @p5='?', @p6='?' (DbType = DateTime), @p7='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Assessments" ("Id", "CreatedAt", "IsDeleted", "MediaId", "Question", "Status", "UpdatedAt", "Version")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2026-07-08 23:06:16.375 +03:00 [INF] Executing CreatedAtActionResult, writing value of type 'RealityLens.Application.DTOs.AssessmentDetailResponse'.
+2026-07-08 23:06:16.376 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.Create (RealityLens.Presentation) in 142.2832ms
+2026-07-08 23:06:16.377 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.Create (RealityLens.Presentation)'
+2026-07-08 23:06:16.378 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5128/api/assessments - 201 null application/json; charset=utf-8 149.2435ms
+2026-07-08 23:06:18.392 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/assessments - null null
+2026-07-08 23:06:18.394 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:18.395 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:06:18.395 +03:00 [INF] Route matched with {action = "GetAll", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-08 23:06:18.399 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version"
+FROM "Assessments" AS a
+WHERE a."Status" <> 'Archived'
+2026-07-08 23:06:18.400 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+ListSelectIterator`2[[RealityLens.Domain.Entities.Assessment, RealityLens.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RealityLens.Application.DTOs.AssessmentListResponse, RealityLens.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-08 23:06:18.401 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.GetAll (RealityLens.Presentation) in 4.6253ms
+2026-07-08 23:06:18.401 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:06:18.403 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/assessments - 200 null application/json; charset=utf-8 10.7426ms
+2026-07-08 23:06:20.963 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/categories - null null
+2026-07-08 23:06:20.964 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:20.965 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/categories - 204 null null 2.3687ms
+2026-07-08 23:06:20.967 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/categories - null null
+2026-07-08 23:06:20.968 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:20.969 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.ManipulationCategoryController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:06:20.971 +03:00 [INF] Route matched with {action = "GetAll", controller = "ManipulationCategory"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller RealityLens.Presentation.Controllers.ManipulationCategoryController (RealityLens.Presentation).
+2026-07-08 23:06:20.983 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."CreatedAt", m."Description", m."IsDeleted", m."Name", m."UpdatedAt", m."Version"
+FROM "ManipulationCategories" AS m
+2026-07-08 23:06:20.992 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+ListSelectIterator`2[[RealityLens.Domain.Entities.ManipulationCategory, RealityLens.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RealityLens.Application.DTOs.CategoryResponse, RealityLens.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-08 23:06:20.994 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.ManipulationCategoryController.GetAll (RealityLens.Presentation) in 21.6885ms
+2026-07-08 23:06:20.994 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.ManipulationCategoryController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:06:20.996 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/categories - 200 null application/json; charset=utf-8 29.6355ms
+2026-07-08 23:06:23.067 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/assessments - null null
+2026-07-08 23:06:23.068 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:23.070 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/assessments - 204 null null 2.6194ms
+2026-07-08 23:06:23.071 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/assessments - null null
+2026-07-08 23:06:23.072 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:23.073 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:06:23.073 +03:00 [INF] Route matched with {action = "GetAll", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-08 23:06:23.075 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version"
+FROM "Assessments" AS a
+WHERE a."Status" <> 'Archived'
+2026-07-08 23:06:23.076 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+ListSelectIterator`2[[RealityLens.Domain.Entities.Assessment, RealityLens.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RealityLens.Application.DTOs.AssessmentListResponse, RealityLens.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-08 23:06:23.077 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.GetAll (RealityLens.Presentation) in 2.6633ms
+2026-07-08 23:06:23.078 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:06:23.080 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/assessments - 200 null application/json; charset=utf-8 8.9805ms
+2026-07-08 23:06:23.181 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/f8e54312-a175-44e5-8a7a-9276e9a02a9d - null null
+2026-07-08 23:06:23.183 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:23.184 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/f8e54312-a175-44e5-8a7a-9276e9a02a9d - 204 null null 3.0279ms
+2026-07-08 23:06:23.186 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/assessments/f8e54312-a175-44e5-8a7a-9276e9a02a9d - null null
+2026-07-08 23:06:23.186 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:23.187 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:06:23.188 +03:00 [INF] Route matched with {action = "GetById", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(System.Guid) on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-08 23:06:23.192 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version", g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "Assessments" AS a
+LEFT JOIN "GroundTruths" AS g ON a."Id" = g."AssessmentId"
+WHERE a."Id" = @__id_0
+LIMIT 1
+2026-07-08 23:06:23.193 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AssessmentDetailResponse'.
+2026-07-08 23:06:23.194 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation) in 5.3338ms
+2026-07-08 23:06:23.195 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:06:23.196 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/assessments/f8e54312-a175-44e5-8a7a-9276e9a02a9d - 200 null application/json; charset=utf-8 10.7336ms
+2026-07-08 23:06:23.252 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/bb75763f-cc19-4c0d-8c99-951c498cdb41 - null null
+2026-07-08 23:06:23.254 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:23.255 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/bb75763f-cc19-4c0d-8c99-951c498cdb41 - 204 null null 2.8443ms
+2026-07-08 23:06:23.256 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/assessments/bb75763f-cc19-4c0d-8c99-951c498cdb41 - null null
+2026-07-08 23:06:23.257 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:23.258 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:06:23.259 +03:00 [INF] Route matched with {action = "GetById", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(System.Guid) on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-08 23:06:23.261 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version", g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "Assessments" AS a
+LEFT JOIN "GroundTruths" AS g ON a."Id" = g."AssessmentId"
+WHERE a."Id" = @__id_0
+LIMIT 1
+2026-07-08 23:06:23.263 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AssessmentDetailResponse'.
+2026-07-08 23:06:23.263 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation) in 4.1277ms
+2026-07-08 23:06:23.264 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:06:23.265 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/assessments/bb75763f-cc19-4c0d-8c99-951c498cdb41 - 200 null application/json; charset=utf-8 8.7846ms
+2026-07-08 23:06:23.318 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/8c978703-e9a6-4cfb-8203-5f6ffb96c3fc - null null
+2026-07-08 23:06:23.319 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:23.321 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/8c978703-e9a6-4cfb-8203-5f6ffb96c3fc - 204 null null 2.7097ms
+2026-07-08 23:06:23.322 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/assessments/8c978703-e9a6-4cfb-8203-5f6ffb96c3fc - null null
+2026-07-08 23:06:23.324 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:23.325 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:06:23.326 +03:00 [INF] Route matched with {action = "GetById", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(System.Guid) on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-08 23:06:23.328 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version", g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "Assessments" AS a
+LEFT JOIN "GroundTruths" AS g ON a."Id" = g."AssessmentId"
+WHERE a."Id" = @__id_0
+LIMIT 1
+2026-07-08 23:06:23.329 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AssessmentDetailResponse'.
+2026-07-08 23:06:23.330 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation) in 3.4313ms
+2026-07-08 23:06:23.330 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:06:23.332 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/assessments/8c978703-e9a6-4cfb-8203-5f6ffb96c3fc - 200 null application/json; charset=utf-8 9.8762ms
+2026-07-08 23:06:23.369 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/c8d25ede-dfb2-4b2a-be4d-7607b26bb37b - null null
+2026-07-08 23:06:23.371 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:23.373 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/c8d25ede-dfb2-4b2a-be4d-7607b26bb37b - 204 null null 3.5958ms
+2026-07-08 23:06:23.375 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/assessments/c8d25ede-dfb2-4b2a-be4d-7607b26bb37b - null null
+2026-07-08 23:06:23.376 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:23.376 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:06:23.377 +03:00 [INF] Route matched with {action = "GetById", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(System.Guid) on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-08 23:06:23.380 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version", g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "Assessments" AS a
+LEFT JOIN "GroundTruths" AS g ON a."Id" = g."AssessmentId"
+WHERE a."Id" = @__id_0
+LIMIT 1
+2026-07-08 23:06:23.382 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AssessmentDetailResponse'.
+2026-07-08 23:06:23.382 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation) in 4.48ms
+2026-07-08 23:06:23.383 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:06:23.385 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/assessments/c8d25ede-dfb2-4b2a-be4d-7607b26bb37b - 200 null application/json; charset=utf-8 10.0237ms
+2026-07-08 23:06:23.400 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/11b1a207-1430-41d9-96cb-61cf771a568e - null null
+2026-07-08 23:06:23.401 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:23.402 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/11b1a207-1430-41d9-96cb-61cf771a568e - 204 null null 2.5703ms
+2026-07-08 23:06:23.404 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/assessments/11b1a207-1430-41d9-96cb-61cf771a568e - null null
+2026-07-08 23:06:23.407 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:23.408 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:06:23.409 +03:00 [INF] Route matched with {action = "GetById", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(System.Guid) on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-08 23:06:23.411 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version", g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "Assessments" AS a
+LEFT JOIN "GroundTruths" AS g ON a."Id" = g."AssessmentId"
+WHERE a."Id" = @__id_0
+LIMIT 1
+2026-07-08 23:06:23.412 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AssessmentDetailResponse'.
+2026-07-08 23:06:23.413 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation) in 3.4408ms
+2026-07-08 23:06:23.414 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:06:23.416 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/assessments/11b1a207-1430-41d9-96cb-61cf771a568e - 200 null application/json; charset=utf-8 11.8683ms
+2026-07-08 23:06:23.435 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/fe77d6a0-caaa-4811-9671-687beeb41726 - null null
+2026-07-08 23:06:23.436 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:23.437 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/fe77d6a0-caaa-4811-9671-687beeb41726 - 204 null null 2.387ms
+2026-07-08 23:06:23.439 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/assessments/fe77d6a0-caaa-4811-9671-687beeb41726 - null null
+2026-07-08 23:06:23.440 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:23.441 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:06:23.442 +03:00 [INF] Route matched with {action = "GetById", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(System.Guid) on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-08 23:06:23.444 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version", g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "Assessments" AS a
+LEFT JOIN "GroundTruths" AS g ON a."Id" = g."AssessmentId"
+WHERE a."Id" = @__id_0
+LIMIT 1
+2026-07-08 23:06:23.445 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AssessmentDetailResponse'.
+2026-07-08 23:06:23.446 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation) in 3.131ms
+2026-07-08 23:06:23.447 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:06:23.448 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/assessments/fe77d6a0-caaa-4811-9671-687beeb41726 - 200 null application/json; charset=utf-8 9.8388ms
+2026-07-08 23:06:28.394 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/assessments - null null
+2026-07-08 23:06:28.396 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:28.397 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/assessments - 204 null null 2.7365ms
+2026-07-08 23:06:28.399 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/assessments - null null
+2026-07-08 23:06:28.400 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:28.401 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:06:28.401 +03:00 [INF] Route matched with {action = "GetAll", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-08 23:06:28.404 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version"
+FROM "Assessments" AS a
+WHERE a."Status" <> 'Archived'
+2026-07-08 23:06:28.406 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+ListSelectIterator`2[[RealityLens.Domain.Entities.Assessment, RealityLens.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RealityLens.Application.DTOs.AssessmentListResponse, RealityLens.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-08 23:06:28.407 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.GetAll (RealityLens.Presentation) in 4.3338ms
+2026-07-08 23:06:28.408 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:06:28.409 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/assessments - 200 null application/json; charset=utf-8 9.5492ms
+2026-07-08 23:06:33.288 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/c8d25ede-dfb2-4b2a-be4d-7607b26bb37b - null null
+2026-07-08 23:06:33.289 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:33.291 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/c8d25ede-dfb2-4b2a-be4d-7607b26bb37b - 204 null null 2.8829ms
+2026-07-08 23:06:33.292 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/assessments/c8d25ede-dfb2-4b2a-be4d-7607b26bb37b - null null
+2026-07-08 23:06:33.293 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:33.295 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:06:33.295 +03:00 [INF] Route matched with {action = "GetById", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(System.Guid) on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-08 23:06:33.298 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version", g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "Assessments" AS a
+LEFT JOIN "GroundTruths" AS g ON a."Id" = g."AssessmentId"
+WHERE a."Id" = @__id_0
+LIMIT 1
+2026-07-08 23:06:33.299 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AssessmentDetailResponse'.
+2026-07-08 23:06:33.300 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation) in 3.4059ms
+2026-07-08 23:06:33.300 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:06:33.302 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/assessments/c8d25ede-dfb2-4b2a-be4d-7607b26bb37b - 200 null application/json; charset=utf-8 9.9501ms
+2026-07-08 23:06:37.887 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/categories - null null
+2026-07-08 23:06:37.889 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:37.890 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/categories - 204 null null 2.8351ms
+2026-07-08 23:06:37.892 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/categories - null null
+2026-07-08 23:06:37.893 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:37.894 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.ManipulationCategoryController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:06:37.895 +03:00 [INF] Route matched with {action = "GetAll", controller = "ManipulationCategory"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller RealityLens.Presentation.Controllers.ManipulationCategoryController (RealityLens.Presentation).
+2026-07-08 23:06:37.899 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."CreatedAt", m."Description", m."IsDeleted", m."Name", m."UpdatedAt", m."Version"
+FROM "ManipulationCategories" AS m
+2026-07-08 23:06:37.900 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+ListSelectIterator`2[[RealityLens.Domain.Entities.ManipulationCategory, RealityLens.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RealityLens.Application.DTOs.CategoryResponse, RealityLens.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-08 23:06:37.901 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.ManipulationCategoryController.GetAll (RealityLens.Presentation) in 4.581ms
+2026-07-08 23:06:37.901 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.ManipulationCategoryController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:06:37.903 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/categories - 200 null application/json; charset=utf-8 10.8857ms
+2026-07-08 23:06:39.923 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/c8d25ede-dfb2-4b2a-be4d-7607b26bb37b/groundtruth - null null
+2026-07-08 23:06:39.925 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:39.927 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/c8d25ede-dfb2-4b2a-be4d-7607b26bb37b/groundtruth - 204 null null 3.8354ms
+2026-07-08 23:06:39.928 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5128/api/assessments/c8d25ede-dfb2-4b2a-be4d-7607b26bb37b/groundtruth - application/json 108
+2026-07-08 23:06:39.930 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:39.931 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.GroundTruthController.Create (RealityLens.Presentation)'
+2026-07-08 23:06:39.937 +03:00 [INF] Route matched with {action = "Create", controller = "GroundTruth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(System.Guid, RealityLens.Application.DTOs.CreateGroundTruthRequest) on controller RealityLens.Presentation.Controllers.GroundTruthController (RealityLens.Presentation).
+2026-07-08 23:06:39.977 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__assessmentId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version"
+FROM "Assessments" AS a
+WHERE a."Id" = @__assessmentId_0
+LIMIT 1
+2026-07-08 23:06:39.982 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__assessmentId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "GroundTruths" AS g
+    WHERE g."AssessmentId" = @__assessmentId_0)
+2026-07-08 23:06:39.994 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__request_ManipulationCategoryId_Value_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "ManipulationCategories" AS m
+    WHERE m."Id" = @__request_ManipulationCategoryId_Value_0)
+2026-07-08 23:06:40.019 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Guid), @p3='?' (DbType = DateTime), @p4='?' (DbType = Boolean), @p5='?', @p6='?' (DbType = Guid), @p7='?', @p8='?', @p9='?' (DbType = DateTime), @p10='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "GroundTruths" ("Id", "AnnotationId", "AssessmentId", "CreatedAt", "IsDeleted", "Judgment", "ManipulationCategoryId", "Reason", "Status", "UpdatedAt", "Version")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+2026-07-08 23:06:40.021 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.GroundTruthResponse'.
+2026-07-08 23:06:40.023 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.GroundTruthController.Create (RealityLens.Presentation) in 84.7385ms
+2026-07-08 23:06:40.024 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.GroundTruthController.Create (RealityLens.Presentation)'
+2026-07-08 23:06:40.026 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5128/api/assessments/c8d25ede-dfb2-4b2a-be4d-7607b26bb37b/groundtruth - 200 null application/json; charset=utf-8 97.41ms
+2026-07-08 23:06:40.150 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/c8d25ede-dfb2-4b2a-be4d-7607b26bb37b - null null
+2026-07-08 23:06:40.152 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:40.153 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media - null null
+2026-07-08 23:06:40.154 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:40.155 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/c8d25ede-dfb2-4b2a-be4d-7607b26bb37b - 204 null null 4.5244ms
+2026-07-08 23:06:40.156 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/assessments/c8d25ede-dfb2-4b2a-be4d-7607b26bb37b - null null
+2026-07-08 23:06:40.157 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media - 204 null null 4.4816ms
+2026-07-08 23:06:40.158 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:40.159 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media - null null
+2026-07-08 23:06:40.160 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:06:40.160 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:40.161 +03:00 [INF] Route matched with {action = "GetById", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(System.Guid) on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-08 23:06:40.161 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:06:40.163 +03:00 [INF] Route matched with {action = "GetAll", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-08 23:06:40.164 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version", g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "Assessments" AS a
+LEFT JOIN "GroundTruths" AS g ON a."Id" = g."AssessmentId"
+WHERE a."Id" = @__id_0
+LIMIT 1
+2026-07-08 23:06:40.165 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AssessmentDetailResponse'.
+2026-07-08 23:06:40.166 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation) in 3.6898ms
+2026-07-08 23:06:40.167 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:06:40.168 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/assessments/c8d25ede-dfb2-4b2a-be4d-7607b26bb37b - 200 null application/json; charset=utf-8 11.563ms
+2026-07-08 23:06:40.195 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."Checksum", m."CreatedAt", m."DurationInSeconds", m."Extension", m."FileSize", m."Height", m."IsDeleted", m."MimeType", m."OriginalFileName", m."ProcessingError", m."Status", m."StoragePath", m."ThumbnailPath", m."UpdatedAt", m."UploadedAt", m."UploadedByUserId", m."Version", m."Width"
+FROM "Media" AS m
+2026-07-08 23:06:40.197 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+ListSelectIterator`2[[RealityLens.Domain.Entities.Media, RealityLens.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RealityLens.Application.DTOs.MediaResponse, RealityLens.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-08 23:06:40.197 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation) in 33.4525ms
+2026-07-08 23:06:40.198 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:06:40.200 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media - 200 null application/json; charset=utf-8 40.5839ms
+2026-07-08 23:06:40.344 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/groundtruth/86109e0b-d7d1-4963-b759-76bfaced27f5 - null null
+2026-07-08 23:06:40.346 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:40.347 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/groundtruth/86109e0b-d7d1-4963-b759-76bfaced27f5 - 204 null null 2.8807ms
+2026-07-08 23:06:40.349 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/annotations/groundtruth/86109e0b-d7d1-4963-b759-76bfaced27f5 - null null
+2026-07-08 23:06:40.350 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:40.351 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation)'
+2026-07-08 23:06:40.352 +03:00 [INF] Route matched with {action = "GetByGroundTruth", controller = "Annotation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetByGroundTruth(System.Guid) on controller RealityLens.Presentation.Controllers.AnnotationController (RealityLens.Presentation).
+2026-07-08 23:06:40.355 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__groundTruthId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "GroundTruths" AS g
+WHERE g."Id" = @__groundTruthId_0
+LIMIT 1
+2026-07-08 23:06:40.356 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AnnotationResponse[]'.
+2026-07-08 23:06:40.357 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation) in 4.0731ms
+2026-07-08 23:06:40.357 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation)'
+2026-07-08 23:06:40.359 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/annotations/groundtruth/86109e0b-d7d1-4963-b759-76bfaced27f5 - 200 null application/json; charset=utf-8 9.945ms
+2026-07-08 23:06:48.999 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/annotations - null null
+2026-07-08 23:06:49.000 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:49.001 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/annotations - 204 null null 2.7413ms
+2026-07-08 23:06:49.003 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5128/api/annotations - application/json 185
+2026-07-08 23:06:49.004 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:49.005 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AnnotationController.Create (RealityLens.Presentation)'
+2026-07-08 23:06:49.007 +03:00 [INF] Route matched with {action = "Create", controller = "Annotation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(RealityLens.Application.DTOs.CreateAnnotationRequest) on controller RealityLens.Presentation.Controllers.AnnotationController (RealityLens.Presentation).
+2026-07-08 23:06:49.055 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "GroundTruths" AS g
+WHERE g."Id" = @__p_0
+LIMIT 1
+2026-07-08 23:06:49.091 +03:00 [INF] Executed DbCommand (17ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = Single), @p4='?' (DbType = Object), @p5='?' (DbType = Boolean), @p6='?' (DbType = Single), @p7='?', @p8='?' (DbType = DateTime), @p9='?' (DbType = Guid), @p13='?' (DbType = Guid), @p10='?' (DbType = Guid), @p11='?' (DbType = DateTime), @p12='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Annotations" ("Id", "CreatedAt", "CreatedBy", "EndSeconds", "GeometryData", "IsDeleted", "StartSeconds", "Type", "UpdatedAt", "Version")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+UPDATE "GroundTruths" SET "AnnotationId" = @p10, "UpdatedAt" = @p11, "Version" = @p12
+WHERE "Id" = @p13;
+2026-07-08 23:06:49.099 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AnnotationResponse'.
+2026-07-08 23:06:49.100 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AnnotationController.Create (RealityLens.Presentation) in 92.4826ms
+2026-07-08 23:06:49.101 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AnnotationController.Create (RealityLens.Presentation)'
+2026-07-08 23:06:49.102 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5128/api/annotations - 200 null application/json; charset=utf-8 99.369ms
+2026-07-08 23:06:49.199 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/session/86109e0b-d7d1-4963-b759-76bfaced27f5/participant - null null
+2026-07-08 23:06:49.199 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/groundtruth/86109e0b-d7d1-4963-b759-76bfaced27f5 - null null
+2026-07-08 23:06:49.201 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:49.202 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:49.204 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/session/86109e0b-d7d1-4963-b759-76bfaced27f5/participant - 204 null null 4.5541ms
+2026-07-08 23:06:49.205 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/groundtruth/86109e0b-d7d1-4963-b759-76bfaced27f5 - 204 null null 5.141ms
+2026-07-08 23:06:49.206 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/annotations/groundtruth/86109e0b-d7d1-4963-b759-76bfaced27f5 - null null
+2026-07-08 23:06:49.207 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/annotations/session/86109e0b-d7d1-4963-b759-76bfaced27f5/participant - null null
+2026-07-08 23:06:49.208 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:49.209 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:49.210 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation)'
+2026-07-08 23:06:49.210 +03:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Participant)
+2026-07-08 23:06:49.210 +03:00 [INF] Route matched with {action = "GetByGroundTruth", controller = "Annotation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetByGroundTruth(System.Guid) on controller RealityLens.Presentation.Controllers.AnnotationController (RealityLens.Presentation).
+2026-07-08 23:06:49.213 +03:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2026-07-08 23:06:49.214 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__groundTruthId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "GroundTruths" AS g
+WHERE g."Id" = @__groundTruthId_0
+LIMIT 1
+2026-07-08 23:06:49.215 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/annotations/session/86109e0b-d7d1-4963-b759-76bfaced27f5/participant - 403 0 null 8.2647ms
+2026-07-08 23:06:49.216 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__groundTruth_AnnotationId_Value_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."CreatedBy", a."EndSeconds", a."GeometryData", a."IsDeleted", a."StartSeconds", a."Type", a."UpdatedAt", a."Version"
+FROM "Annotations" AS a
+WHERE a."Id" = @__groundTruth_AnnotationId_Value_0
+LIMIT 1
+2026-07-08 23:06:49.218 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AnnotationResponse[]'.
+2026-07-08 23:06:49.219 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation) in 7.1219ms
+2026-07-08 23:06:49.219 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation)'
+2026-07-08 23:06:49.220 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/annotations/groundtruth/86109e0b-d7d1-4963-b759-76bfaced27f5 - 200 null application/json; charset=utf-8 14.2663ms
+2026-07-08 23:06:57.765 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/11b1a207-1430-41d9-96cb-61cf771a568e - null null
+2026-07-08 23:06:57.767 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:57.768 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/11b1a207-1430-41d9-96cb-61cf771a568e - 204 null null 3.6612ms
+2026-07-08 23:06:57.770 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/assessments/11b1a207-1430-41d9-96cb-61cf771a568e - null null
+2026-07-08 23:06:57.771 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:06:57.772 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:06:57.772 +03:00 [INF] Route matched with {action = "GetById", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(System.Guid) on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-08 23:06:57.778 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version", g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "Assessments" AS a
+LEFT JOIN "GroundTruths" AS g ON a."Id" = g."AssessmentId"
+WHERE a."Id" = @__id_0
+LIMIT 1
+2026-07-08 23:06:57.782 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AssessmentDetailResponse'.
+2026-07-08 23:06:57.784 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation) in 10.3499ms
+2026-07-08 23:06:57.784 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:06:57.786 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/assessments/11b1a207-1430-41d9-96cb-61cf771a568e - 200 null application/json; charset=utf-8 16.4118ms
+2026-07-08 23:07:02.911 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/c8d25ede-dfb2-4b2a-be4d-7607b26bb37b - null null
+2026-07-08 23:07:02.913 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:02.914 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/c8d25ede-dfb2-4b2a-be4d-7607b26bb37b - 204 null null 3.3775ms
+2026-07-08 23:07:02.916 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/assessments/c8d25ede-dfb2-4b2a-be4d-7607b26bb37b - null null
+2026-07-08 23:07:02.917 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:02.919 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:07:02.920 +03:00 [INF] Route matched with {action = "GetById", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(System.Guid) on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-08 23:07:02.923 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version", g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "Assessments" AS a
+LEFT JOIN "GroundTruths" AS g ON a."Id" = g."AssessmentId"
+WHERE a."Id" = @__id_0
+LIMIT 1
+2026-07-08 23:07:02.924 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AssessmentDetailResponse'.
+2026-07-08 23:07:02.926 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation) in 4.7439ms
+2026-07-08 23:07:02.927 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:07:02.928 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/assessments/c8d25ede-dfb2-4b2a-be4d-7607b26bb37b - 200 null application/json; charset=utf-8 12.5934ms
+2026-07-08 23:07:03.095 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/groundtruth/86109e0b-d7d1-4963-b759-76bfaced27f5 - null null
+2026-07-08 23:07:03.096 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/assessments/c8d25ede-dfb2-4b2a-be4d-7607b26bb37b - null null
+2026-07-08 23:07:03.096 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:03.098 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:03.098 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:07:03.099 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/groundtruth/86109e0b-d7d1-4963-b759-76bfaced27f5 - 204 null null 4.3414ms
+2026-07-08 23:07:03.100 +03:00 [INF] Route matched with {action = "GetById", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(System.Guid) on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-08 23:07:03.101 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/annotations/groundtruth/86109e0b-d7d1-4963-b759-76bfaced27f5 - null null
+2026-07-08 23:07:03.103 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:03.103 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version", g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "Assessments" AS a
+LEFT JOIN "GroundTruths" AS g ON a."Id" = g."AssessmentId"
+WHERE a."Id" = @__id_0
+LIMIT 1
+2026-07-08 23:07:03.103 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation)'
+2026-07-08 23:07:03.104 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AssessmentDetailResponse'.
+2026-07-08 23:07:03.105 +03:00 [INF] Route matched with {action = "GetByGroundTruth", controller = "Annotation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetByGroundTruth(System.Guid) on controller RealityLens.Presentation.Controllers.AnnotationController (RealityLens.Presentation).
+2026-07-08 23:07:03.105 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation) in 3.7813ms
+2026-07-08 23:07:03.107 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:07:03.107 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__groundTruthId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "GroundTruths" AS g
+WHERE g."Id" = @__groundTruthId_0
+LIMIT 1
+2026-07-08 23:07:03.108 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/assessments/c8d25ede-dfb2-4b2a-be4d-7607b26bb37b - 200 null application/json; charset=utf-8 12.2979ms
+2026-07-08 23:07:03.110 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__groundTruth_AnnotationId_Value_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."CreatedBy", a."EndSeconds", a."GeometryData", a."IsDeleted", a."StartSeconds", a."Type", a."UpdatedAt", a."Version"
+FROM "Annotations" AS a
+WHERE a."Id" = @__groundTruth_AnnotationId_Value_0
+LIMIT 1
+2026-07-08 23:07:03.111 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AnnotationResponse[]'.
+2026-07-08 23:07:03.112 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation) in 6.1119ms
+2026-07-08 23:07:03.113 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation)'
+2026-07-08 23:07:03.114 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/annotations/groundtruth/86109e0b-d7d1-4963-b759-76bfaced27f5 - 200 null application/json; charset=utf-8 13.3766ms
+2026-07-08 23:07:06.468 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/assessments/c8d25ede-dfb2-4b2a-be4d-7607b26bb37b - null null
+2026-07-08 23:07:06.469 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media - null null
+2026-07-08 23:07:06.470 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:06.471 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:06.472 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:07:06.472 +03:00 [INF] Route matched with {action = "GetById", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(System.Guid) on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-08 23:07:06.473 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media - 204 null null 4.5527ms
+2026-07-08 23:07:06.475 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media - null null
+2026-07-08 23:07:06.475 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version", g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "Assessments" AS a
+LEFT JOIN "GroundTruths" AS g ON a."Id" = g."AssessmentId"
+WHERE a."Id" = @__id_0
+LIMIT 1
+2026-07-08 23:07:06.476 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:06.477 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AssessmentDetailResponse'.
+2026-07-08 23:07:06.478 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:07:06.478 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation) in 3.9791ms
+2026-07-08 23:07:06.478 +03:00 [INF] Route matched with {action = "GetAll", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-08 23:07:06.479 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:07:06.480 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."Checksum", m."CreatedAt", m."DurationInSeconds", m."Extension", m."FileSize", m."Height", m."IsDeleted", m."MimeType", m."OriginalFileName", m."ProcessingError", m."Status", m."StoragePath", m."ThumbnailPath", m."UpdatedAt", m."UploadedAt", m."UploadedByUserId", m."Version", m."Width"
+FROM "Media" AS m
+2026-07-08 23:07:06.481 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/assessments/c8d25ede-dfb2-4b2a-be4d-7607b26bb37b - 200 null application/json; charset=utf-8 12.6343ms
+2026-07-08 23:07:06.482 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+ListSelectIterator`2[[RealityLens.Domain.Entities.Media, RealityLens.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RealityLens.Application.DTOs.MediaResponse, RealityLens.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-08 23:07:06.484 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation) in 4.3319ms
+2026-07-08 23:07:06.484 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:07:06.486 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media - 200 null application/json; charset=utf-8 10.6075ms
+2026-07-08 23:07:16.718 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/11b1a207-1430-41d9-96cb-61cf771a568e - null null
+2026-07-08 23:07:16.719 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:16.720 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/11b1a207-1430-41d9-96cb-61cf771a568e - 204 null null 2.7838ms
+2026-07-08 23:07:16.722 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/assessments/11b1a207-1430-41d9-96cb-61cf771a568e - null null
+2026-07-08 23:07:16.724 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:16.725 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:07:16.726 +03:00 [INF] Route matched with {action = "GetById", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(System.Guid) on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-08 23:07:16.728 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version", g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "Assessments" AS a
+LEFT JOIN "GroundTruths" AS g ON a."Id" = g."AssessmentId"
+WHERE a."Id" = @__id_0
+LIMIT 1
+2026-07-08 23:07:16.729 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AssessmentDetailResponse'.
+2026-07-08 23:07:16.730 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation) in 3.349ms
+2026-07-08 23:07:16.731 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:07:16.732 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/assessments/11b1a207-1430-41d9-96cb-61cf771a568e - 200 null application/json; charset=utf-8 10.6161ms
+2026-07-08 23:07:19.352 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/categories - null null
+2026-07-08 23:07:19.354 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:19.356 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/categories - 204 null null 3.4127ms
+2026-07-08 23:07:19.357 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/categories - null null
+2026-07-08 23:07:19.358 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:19.359 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.ManipulationCategoryController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:07:19.359 +03:00 [INF] Route matched with {action = "GetAll", controller = "ManipulationCategory"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller RealityLens.Presentation.Controllers.ManipulationCategoryController (RealityLens.Presentation).
+2026-07-08 23:07:19.365 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."CreatedAt", m."Description", m."IsDeleted", m."Name", m."UpdatedAt", m."Version"
+FROM "ManipulationCategories" AS m
+2026-07-08 23:07:19.367 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+ListSelectIterator`2[[RealityLens.Domain.Entities.ManipulationCategory, RealityLens.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RealityLens.Application.DTOs.CategoryResponse, RealityLens.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-08 23:07:19.367 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.ManipulationCategoryController.GetAll (RealityLens.Presentation) in 7.1992ms
+2026-07-08 23:07:19.368 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.ManipulationCategoryController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:07:19.370 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/categories - 200 null application/json; charset=utf-8 13.4807ms
+2026-07-08 23:07:21.223 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/11b1a207-1430-41d9-96cb-61cf771a568e/groundtruth - null null
+2026-07-08 23:07:21.225 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:21.226 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/assessments/11b1a207-1430-41d9-96cb-61cf771a568e/groundtruth - 204 null null 3.0532ms
+2026-07-08 23:07:21.227 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5128/api/assessments/11b1a207-1430-41d9-96cb-61cf771a568e/groundtruth - application/json 108
+2026-07-08 23:07:21.229 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:21.229 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.GroundTruthController.Create (RealityLens.Presentation)'
+2026-07-08 23:07:21.230 +03:00 [INF] Route matched with {action = "Create", controller = "GroundTruth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(System.Guid, RealityLens.Application.DTOs.CreateGroundTruthRequest) on controller RealityLens.Presentation.Controllers.GroundTruthController (RealityLens.Presentation).
+2026-07-08 23:07:21.236 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__assessmentId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version"
+FROM "Assessments" AS a
+WHERE a."Id" = @__assessmentId_0
+LIMIT 1
+2026-07-08 23:07:21.238 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__assessmentId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "GroundTruths" AS g
+    WHERE g."AssessmentId" = @__assessmentId_0)
+2026-07-08 23:07:21.240 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__request_ManipulationCategoryId_Value_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "ManipulationCategories" AS m
+    WHERE m."Id" = @__request_ManipulationCategoryId_Value_0)
+2026-07-08 23:07:21.246 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Guid), @p3='?' (DbType = DateTime), @p4='?' (DbType = Boolean), @p5='?', @p6='?' (DbType = Guid), @p7='?', @p8='?', @p9='?' (DbType = DateTime), @p10='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "GroundTruths" ("Id", "AnnotationId", "AssessmentId", "CreatedAt", "IsDeleted", "Judgment", "ManipulationCategoryId", "Reason", "Status", "UpdatedAt", "Version")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+2026-07-08 23:07:21.247 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.GroundTruthResponse'.
+2026-07-08 23:07:21.248 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.GroundTruthController.Create (RealityLens.Presentation) in 16.5074ms
+2026-07-08 23:07:21.249 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.GroundTruthController.Create (RealityLens.Presentation)'
+2026-07-08 23:07:21.251 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5128/api/assessments/11b1a207-1430-41d9-96cb-61cf771a568e/groundtruth - 200 null application/json; charset=utf-8 23.232ms
+2026-07-08 23:07:21.392 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/assessments/11b1a207-1430-41d9-96cb-61cf771a568e - null null
+2026-07-08 23:07:21.392 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/media - null null
+2026-07-08 23:07:21.394 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:21.395 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:21.395 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:07:21.396 +03:00 [INF] Route matched with {action = "GetById", controller = "Assessment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(System.Guid) on controller RealityLens.Presentation.Controllers.AssessmentController (RealityLens.Presentation).
+2026-07-08 23:07:21.397 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/media - 204 null null 5.2014ms
+2026-07-08 23:07:21.399 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."IsDeleted", a."MediaId", a."Question", a."Status", a."UpdatedAt", a."Version", g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "Assessments" AS a
+LEFT JOIN "GroundTruths" AS g ON a."Id" = g."AssessmentId"
+WHERE a."Id" = @__id_0
+LIMIT 1
+2026-07-08 23:07:21.400 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/media - null null
+2026-07-08 23:07:21.401 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AssessmentDetailResponse'.
+2026-07-08 23:07:21.402 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:21.402 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation) in 4.309ms
+2026-07-08 23:07:21.403 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:07:21.403 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AssessmentController.GetById (RealityLens.Presentation)'
+2026-07-08 23:07:21.404 +03:00 [INF] Route matched with {action = "GetAll", controller = "Media"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller RealityLens.Presentation.Controllers.MediaController (RealityLens.Presentation).
+2026-07-08 23:07:21.406 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Id", m."Checksum", m."CreatedAt", m."DurationInSeconds", m."Extension", m."FileSize", m."Height", m."IsDeleted", m."MimeType", m."OriginalFileName", m."ProcessingError", m."Status", m."StoragePath", m."ThumbnailPath", m."UpdatedAt", m."UploadedAt", m."UploadedByUserId", m."Version", m."Width"
+FROM "Media" AS m
+2026-07-08 23:07:21.406 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/assessments/11b1a207-1430-41d9-96cb-61cf771a568e - 200 null application/json; charset=utf-8 14.6056ms
+2026-07-08 23:07:21.408 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+ListSelectIterator`2[[RealityLens.Domain.Entities.Media, RealityLens.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RealityLens.Application.DTOs.MediaResponse, RealityLens.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-08 23:07:21.410 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation) in 4.316ms
+2026-07-08 23:07:21.410 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.MediaController.GetAll (RealityLens.Presentation)'
+2026-07-08 23:07:21.412 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/media - 200 null application/json; charset=utf-8 12.2944ms
+2026-07-08 23:07:21.546 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/groundtruth/c9e01e20-8b1f-4a9c-a828-b4109c8140c5 - null null
+2026-07-08 23:07:21.548 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:21.550 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/groundtruth/c9e01e20-8b1f-4a9c-a828-b4109c8140c5 - 204 null null 3.2581ms
+2026-07-08 23:07:21.551 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/annotations/groundtruth/c9e01e20-8b1f-4a9c-a828-b4109c8140c5 - null null
+2026-07-08 23:07:21.553 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:21.554 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation)'
+2026-07-08 23:07:21.554 +03:00 [INF] Route matched with {action = "GetByGroundTruth", controller = "Annotation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetByGroundTruth(System.Guid) on controller RealityLens.Presentation.Controllers.AnnotationController (RealityLens.Presentation).
+2026-07-08 23:07:21.558 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__groundTruthId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "GroundTruths" AS g
+WHERE g."Id" = @__groundTruthId_0
+LIMIT 1
+2026-07-08 23:07:21.560 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AnnotationResponse[]'.
+2026-07-08 23:07:21.560 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation) in 4.9704ms
+2026-07-08 23:07:21.561 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation)'
+2026-07-08 23:07:21.563 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/annotations/groundtruth/c9e01e20-8b1f-4a9c-a828-b4109c8140c5 - 200 null application/json; charset=utf-8 11.1694ms
+2026-07-08 23:07:32.223 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/annotations - null null
+2026-07-08 23:07:32.225 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:32.226 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/annotations - 204 null null 3.5697ms
+2026-07-08 23:07:32.228 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5128/api/annotations - application/json 185
+2026-07-08 23:07:32.229 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:32.229 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AnnotationController.Create (RealityLens.Presentation)'
+2026-07-08 23:07:32.230 +03:00 [INF] Route matched with {action = "Create", controller = "Annotation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(RealityLens.Application.DTOs.CreateAnnotationRequest) on controller RealityLens.Presentation.Controllers.AnnotationController (RealityLens.Presentation).
+2026-07-08 23:07:32.233 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "GroundTruths" AS g
+WHERE g."Id" = @__p_0
+LIMIT 1
+2026-07-08 23:07:32.235 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = Single), @p4='?' (DbType = Object), @p5='?' (DbType = Boolean), @p6='?' (DbType = Single), @p7='?', @p8='?' (DbType = DateTime), @p9='?' (DbType = Guid), @p13='?' (DbType = Guid), @p10='?' (DbType = Guid), @p11='?' (DbType = DateTime), @p12='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Annotations" ("Id", "CreatedAt", "CreatedBy", "EndSeconds", "GeometryData", "IsDeleted", "StartSeconds", "Type", "UpdatedAt", "Version")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+UPDATE "GroundTruths" SET "AnnotationId" = @p10, "UpdatedAt" = @p11, "Version" = @p12
+WHERE "Id" = @p13;
+2026-07-08 23:07:32.239 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AnnotationResponse'.
+2026-07-08 23:07:32.239 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AnnotationController.Create (RealityLens.Presentation) in 8.7451ms
+2026-07-08 23:07:32.240 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AnnotationController.Create (RealityLens.Presentation)'
+2026-07-08 23:07:32.241 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5128/api/annotations - 200 null application/json; charset=utf-8 13.6759ms
+2026-07-08 23:07:32.343 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/session/c9e01e20-8b1f-4a9c-a828-b4109c8140c5/participant - null null
+2026-07-08 23:07:32.343 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/groundtruth/c9e01e20-8b1f-4a9c-a828-b4109c8140c5 - null null
+2026-07-08 23:07:32.344 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:32.345 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:32.347 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/session/c9e01e20-8b1f-4a9c-a828-b4109c8140c5/participant - 204 null null 4.1093ms
+2026-07-08 23:07:32.348 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/groundtruth/c9e01e20-8b1f-4a9c-a828-b4109c8140c5 - 204 null null 4.7509ms
+2026-07-08 23:07:32.349 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/annotations/session/c9e01e20-8b1f-4a9c-a828-b4109c8140c5/participant - null null
+2026-07-08 23:07:32.350 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/annotations/groundtruth/c9e01e20-8b1f-4a9c-a828-b4109c8140c5 - null null
+2026-07-08 23:07:32.351 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:32.352 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:32.353 +03:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Participant)
+2026-07-08 23:07:32.353 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation)'
+2026-07-08 23:07:32.353 +03:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2026-07-08 23:07:32.354 +03:00 [INF] Route matched with {action = "GetByGroundTruth", controller = "Annotation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetByGroundTruth(System.Guid) on controller RealityLens.Presentation.Controllers.AnnotationController (RealityLens.Presentation).
+2026-07-08 23:07:32.356 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/annotations/session/c9e01e20-8b1f-4a9c-a828-b4109c8140c5/participant - 403 0 null 7.1626ms
+2026-07-08 23:07:32.357 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__groundTruthId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "GroundTruths" AS g
+WHERE g."Id" = @__groundTruthId_0
+LIMIT 1
+2026-07-08 23:07:32.359 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__groundTruth_AnnotationId_Value_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."CreatedBy", a."EndSeconds", a."GeometryData", a."IsDeleted", a."StartSeconds", a."Type", a."UpdatedAt", a."Version"
+FROM "Annotations" AS a
+WHERE a."Id" = @__groundTruth_AnnotationId_Value_0
+LIMIT 1
+2026-07-08 23:07:32.361 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AnnotationResponse[]'.
+2026-07-08 23:07:32.361 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation) in 6.2727ms
+2026-07-08 23:07:32.362 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation)'
+2026-07-08 23:07:32.363 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/annotations/groundtruth/c9e01e20-8b1f-4a9c-a828-b4109c8140c5 - 200 null application/json; charset=utf-8 13.1252ms
+2026-07-08 23:07:36.015 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5128/api/annotations - application/json 186
+2026-07-08 23:07:36.017 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:36.017 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AnnotationController.Create (RealityLens.Presentation)'
+2026-07-08 23:07:36.018 +03:00 [INF] Route matched with {action = "Create", controller = "Annotation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(RealityLens.Application.DTOs.CreateAnnotationRequest) on controller RealityLens.Presentation.Controllers.AnnotationController (RealityLens.Presentation).
+2026-07-08 23:07:36.021 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "GroundTruths" AS g
+WHERE g."Id" = @__p_0
+LIMIT 1
+2026-07-08 23:07:36.024 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = Single), @p4='?' (DbType = Object), @p5='?' (DbType = Boolean), @p6='?' (DbType = Single), @p7='?', @p8='?' (DbType = DateTime), @p9='?' (DbType = Guid), @p13='?' (DbType = Guid), @p10='?' (DbType = Guid), @p11='?' (DbType = DateTime), @p12='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Annotations" ("Id", "CreatedAt", "CreatedBy", "EndSeconds", "GeometryData", "IsDeleted", "StartSeconds", "Type", "UpdatedAt", "Version")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+UPDATE "GroundTruths" SET "AnnotationId" = @p10, "UpdatedAt" = @p11, "Version" = @p12
+WHERE "Id" = @p13;
+2026-07-08 23:07:36.025 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AnnotationResponse'.
+2026-07-08 23:07:36.026 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AnnotationController.Create (RealityLens.Presentation) in 7.3974ms
+2026-07-08 23:07:36.027 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AnnotationController.Create (RealityLens.Presentation)'
+2026-07-08 23:07:36.029 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5128/api/annotations - 200 null application/json; charset=utf-8 13.7394ms
+2026-07-08 23:07:36.129 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/annotations/session/c9e01e20-8b1f-4a9c-a828-b4109c8140c5/participant - null null
+2026-07-08 23:07:36.130 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/annotations/groundtruth/c9e01e20-8b1f-4a9c-a828-b4109c8140c5 - null null
+2026-07-08 23:07:36.131 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:36.132 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:36.132 +03:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Participant)
+2026-07-08 23:07:36.133 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation)'
+2026-07-08 23:07:36.133 +03:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2026-07-08 23:07:36.133 +03:00 [INF] Route matched with {action = "GetByGroundTruth", controller = "Annotation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetByGroundTruth(System.Guid) on controller RealityLens.Presentation.Controllers.AnnotationController (RealityLens.Presentation).
+2026-07-08 23:07:36.136 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/annotations/session/c9e01e20-8b1f-4a9c-a828-b4109c8140c5/participant - 403 0 null 6.7586ms
+2026-07-08 23:07:36.136 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__groundTruthId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "GroundTruths" AS g
+WHERE g."Id" = @__groundTruthId_0
+LIMIT 1
+2026-07-08 23:07:36.138 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__groundTruth_AnnotationId_Value_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."CreatedBy", a."EndSeconds", a."GeometryData", a."IsDeleted", a."StartSeconds", a."Type", a."UpdatedAt", a."Version"
+FROM "Annotations" AS a
+WHERE a."Id" = @__groundTruth_AnnotationId_Value_0
+LIMIT 1
+2026-07-08 23:07:36.139 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AnnotationResponse[]'.
+2026-07-08 23:07:36.140 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation) in 5.1175ms
+2026-07-08 23:07:36.141 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation)'
+2026-07-08 23:07:36.143 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/annotations/groundtruth/c9e01e20-8b1f-4a9c-a828-b4109c8140c5 - 200 null application/json; charset=utf-8 12.8968ms
+2026-07-08 23:07:40.687 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/annotations - null null
+2026-07-08 23:07:40.689 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:40.690 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/annotations - 204 null null 3.4079ms
+2026-07-08 23:07:40.691 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5128/api/annotations - application/json 186
+2026-07-08 23:07:40.692 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:40.693 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AnnotationController.Create (RealityLens.Presentation)'
+2026-07-08 23:07:40.694 +03:00 [INF] Route matched with {action = "Create", controller = "Annotation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(RealityLens.Application.DTOs.CreateAnnotationRequest) on controller RealityLens.Presentation.Controllers.AnnotationController (RealityLens.Presentation).
+2026-07-08 23:07:40.696 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "GroundTruths" AS g
+WHERE g."Id" = @__p_0
+LIMIT 1
+2026-07-08 23:07:40.698 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = Single), @p4='?' (DbType = Object), @p5='?' (DbType = Boolean), @p6='?' (DbType = Single), @p7='?', @p8='?' (DbType = DateTime), @p9='?' (DbType = Guid), @p13='?' (DbType = Guid), @p10='?' (DbType = Guid), @p11='?' (DbType = DateTime), @p12='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Annotations" ("Id", "CreatedAt", "CreatedBy", "EndSeconds", "GeometryData", "IsDeleted", "StartSeconds", "Type", "UpdatedAt", "Version")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+UPDATE "GroundTruths" SET "AnnotationId" = @p10, "UpdatedAt" = @p11, "Version" = @p12
+WHERE "Id" = @p13;
+2026-07-08 23:07:40.700 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AnnotationResponse'.
+2026-07-08 23:07:40.701 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AnnotationController.Create (RealityLens.Presentation) in 7.0667ms
+2026-07-08 23:07:40.702 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AnnotationController.Create (RealityLens.Presentation)'
+2026-07-08 23:07:40.703 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5128/api/annotations - 200 null application/json; charset=utf-8 11.8926ms
+2026-07-08 23:07:40.799 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/session/c9e01e20-8b1f-4a9c-a828-b4109c8140c5/participant - null null
+2026-07-08 23:07:40.800 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/groundtruth/c9e01e20-8b1f-4a9c-a828-b4109c8140c5 - null null
+2026-07-08 23:07:40.801 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:40.802 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:40.804 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/session/c9e01e20-8b1f-4a9c-a828-b4109c8140c5/participant - 204 null null 4.4288ms
+2026-07-08 23:07:40.804 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/groundtruth/c9e01e20-8b1f-4a9c-a828-b4109c8140c5 - 204 null null 4.579ms
+2026-07-08 23:07:40.806 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/annotations/session/c9e01e20-8b1f-4a9c-a828-b4109c8140c5/participant - null null
+2026-07-08 23:07:40.807 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/annotations/groundtruth/c9e01e20-8b1f-4a9c-a828-b4109c8140c5 - null null
+2026-07-08 23:07:40.808 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:40.809 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:40.810 +03:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Participant)
+2026-07-08 23:07:40.810 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation)'
+2026-07-08 23:07:40.810 +03:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2026-07-08 23:07:40.811 +03:00 [INF] Route matched with {action = "GetByGroundTruth", controller = "Annotation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetByGroundTruth(System.Guid) on controller RealityLens.Presentation.Controllers.AnnotationController (RealityLens.Presentation).
+2026-07-08 23:07:40.813 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/annotations/session/c9e01e20-8b1f-4a9c-a828-b4109c8140c5/participant - 403 0 null 7.0337ms
+2026-07-08 23:07:40.814 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__groundTruthId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "GroundTruths" AS g
+WHERE g."Id" = @__groundTruthId_0
+LIMIT 1
+2026-07-08 23:07:40.816 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__groundTruth_AnnotationId_Value_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."CreatedBy", a."EndSeconds", a."GeometryData", a."IsDeleted", a."StartSeconds", a."Type", a."UpdatedAt", a."Version"
+FROM "Annotations" AS a
+WHERE a."Id" = @__groundTruth_AnnotationId_Value_0
+LIMIT 1
+2026-07-08 23:07:40.817 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AnnotationResponse[]'.
+2026-07-08 23:07:40.817 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation) in 5.3901ms
+2026-07-08 23:07:40.818 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation)'
+2026-07-08 23:07:40.819 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/annotations/groundtruth/c9e01e20-8b1f-4a9c-a828-b4109c8140c5 - 200 null application/json; charset=utf-8 12.0502ms
+2026-07-08 23:07:54.590 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/annotations - null null
+2026-07-08 23:07:54.592 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:54.593 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/annotations - 204 null null 2.7125ms
+2026-07-08 23:07:54.594 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5128/api/annotations - application/json 186
+2026-07-08 23:07:54.595 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:54.596 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AnnotationController.Create (RealityLens.Presentation)'
+2026-07-08 23:07:54.597 +03:00 [INF] Route matched with {action = "Create", controller = "Annotation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(RealityLens.Application.DTOs.CreateAnnotationRequest) on controller RealityLens.Presentation.Controllers.AnnotationController (RealityLens.Presentation).
+2026-07-08 23:07:54.600 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "GroundTruths" AS g
+WHERE g."Id" = @__p_0
+LIMIT 1
+2026-07-08 23:07:54.602 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = Single), @p4='?' (DbType = Object), @p5='?' (DbType = Boolean), @p6='?' (DbType = Single), @p7='?', @p8='?' (DbType = DateTime), @p9='?' (DbType = Guid), @p13='?' (DbType = Guid), @p10='?' (DbType = Guid), @p11='?' (DbType = DateTime), @p12='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Annotations" ("Id", "CreatedAt", "CreatedBy", "EndSeconds", "GeometryData", "IsDeleted", "StartSeconds", "Type", "UpdatedAt", "Version")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+UPDATE "GroundTruths" SET "AnnotationId" = @p10, "UpdatedAt" = @p11, "Version" = @p12
+WHERE "Id" = @p13;
+2026-07-08 23:07:54.603 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AnnotationResponse'.
+2026-07-08 23:07:54.604 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AnnotationController.Create (RealityLens.Presentation) in 6.4766ms
+2026-07-08 23:07:54.605 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AnnotationController.Create (RealityLens.Presentation)'
+2026-07-08 23:07:54.606 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5128/api/annotations - 200 null application/json; charset=utf-8 11.9075ms
+2026-07-08 23:07:54.733 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/session/c9e01e20-8b1f-4a9c-a828-b4109c8140c5/participant - null null
+2026-07-08 23:07:54.734 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/groundtruth/c9e01e20-8b1f-4a9c-a828-b4109c8140c5 - null null
+2026-07-08 23:07:54.735 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:54.736 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:54.738 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/session/c9e01e20-8b1f-4a9c-a828-b4109c8140c5/participant - 204 null null 4.3199ms
+2026-07-08 23:07:54.739 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5128/api/annotations/groundtruth/c9e01e20-8b1f-4a9c-a828-b4109c8140c5 - 204 null null 4.7805ms
+2026-07-08 23:07:54.740 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/annotations/groundtruth/c9e01e20-8b1f-4a9c-a828-b4109c8140c5 - null null
+2026-07-08 23:07:54.743 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/annotations/session/c9e01e20-8b1f-4a9c-a828-b4109c8140c5/participant - null null
+2026-07-08 23:07:54.745 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:54.746 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:54.746 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation)'
+2026-07-08 23:07:54.746 +03:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Participant)
+2026-07-08 23:07:54.747 +03:00 [INF] Route matched with {action = "GetByGroundTruth", controller = "Annotation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetByGroundTruth(System.Guid) on controller RealityLens.Presentation.Controllers.AnnotationController (RealityLens.Presentation).
+2026-07-08 23:07:54.748 +03:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2026-07-08 23:07:54.750 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__groundTruthId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "GroundTruths" AS g
+WHERE g."Id" = @__groundTruthId_0
+LIMIT 1
+2026-07-08 23:07:54.751 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/annotations/session/c9e01e20-8b1f-4a9c-a828-b4109c8140c5/participant - 403 0 null 8.4965ms
+2026-07-08 23:07:54.754 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__groundTruth_AnnotationId_Value_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."CreatedBy", a."EndSeconds", a."GeometryData", a."IsDeleted", a."StartSeconds", a."Type", a."UpdatedAt", a."Version"
+FROM "Annotations" AS a
+WHERE a."Id" = @__groundTruth_AnnotationId_Value_0
+LIMIT 1
+2026-07-08 23:07:54.756 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AnnotationResponse[]'.
+2026-07-08 23:07:54.758 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation) in 9.2798ms
+2026-07-08 23:07:54.759 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation)'
+2026-07-08 23:07:54.760 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/annotations/groundtruth/c9e01e20-8b1f-4a9c-a828-b4109c8140c5 - 200 null application/json; charset=utf-8 20.0564ms
+2026-07-08 23:07:59.329 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5128/api/annotations - application/json 186
+2026-07-08 23:07:59.330 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:59.331 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AnnotationController.Create (RealityLens.Presentation)'
+2026-07-08 23:07:59.331 +03:00 [INF] Route matched with {action = "Create", controller = "Annotation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(RealityLens.Application.DTOs.CreateAnnotationRequest) on controller RealityLens.Presentation.Controllers.AnnotationController (RealityLens.Presentation).
+2026-07-08 23:07:59.336 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "GroundTruths" AS g
+WHERE g."Id" = @__p_0
+LIMIT 1
+2026-07-08 23:07:59.338 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (DbType = Single), @p4='?' (DbType = Object), @p5='?' (DbType = Boolean), @p6='?' (DbType = Single), @p7='?', @p8='?' (DbType = DateTime), @p9='?' (DbType = Guid), @p13='?' (DbType = Guid), @p10='?' (DbType = Guid), @p11='?' (DbType = DateTime), @p12='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Annotations" ("Id", "CreatedAt", "CreatedBy", "EndSeconds", "GeometryData", "IsDeleted", "StartSeconds", "Type", "UpdatedAt", "Version")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+UPDATE "GroundTruths" SET "AnnotationId" = @p10, "UpdatedAt" = @p11, "Version" = @p12
+WHERE "Id" = @p13;
+2026-07-08 23:07:59.341 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AnnotationResponse'.
+2026-07-08 23:07:59.342 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AnnotationController.Create (RealityLens.Presentation) in 9.0032ms
+2026-07-08 23:07:59.342 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AnnotationController.Create (RealityLens.Presentation)'
+2026-07-08 23:07:59.344 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5128/api/annotations - 200 null application/json; charset=utf-8 14.8864ms
+2026-07-08 23:07:59.466 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/annotations/session/c9e01e20-8b1f-4a9c-a828-b4109c8140c5/participant - null null
+2026-07-08 23:07:59.466 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5128/api/annotations/groundtruth/c9e01e20-8b1f-4a9c-a828-b4109c8140c5 - null null
+2026-07-08 23:07:59.468 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:59.469 +03:00 [INF] CORS policy execution successful.
+2026-07-08 23:07:59.470 +03:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Participant)
+2026-07-08 23:07:59.470 +03:00 [INF] Executing endpoint 'RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation)'
+2026-07-08 23:07:59.470 +03:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2026-07-08 23:07:59.471 +03:00 [INF] Route matched with {action = "GetByGroundTruth", controller = "Annotation"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetByGroundTruth(System.Guid) on controller RealityLens.Presentation.Controllers.AnnotationController (RealityLens.Presentation).
+2026-07-08 23:07:59.473 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/annotations/session/c9e01e20-8b1f-4a9c-a828-b4109c8140c5/participant - 403 0 null 7.453ms
+2026-07-08 23:07:59.474 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__groundTruthId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT g."Id", g."AnnotationId", g."AssessmentId", g."CreatedAt", g."IsDeleted", g."Judgment", g."ManipulationCategoryId", g."Reason", g."Status", g."UpdatedAt", g."Version"
+FROM "GroundTruths" AS g
+WHERE g."Id" = @__groundTruthId_0
+LIMIT 1
+2026-07-08 23:07:59.477 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__groundTruth_AnnotationId_Value_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT a."Id", a."CreatedAt", a."CreatedBy", a."EndSeconds", a."GeometryData", a."IsDeleted", a."StartSeconds", a."Type", a."UpdatedAt", a."Version"
+FROM "Annotations" AS a
+WHERE a."Id" = @__groundTruth_AnnotationId_Value_0
+LIMIT 1
+2026-07-08 23:07:59.478 +03:00 [INF] Executing OkObjectResult, writing value of type 'RealityLens.Application.DTOs.AnnotationResponse[]'.
+2026-07-08 23:07:59.480 +03:00 [INF] Executed action RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation) in 7.6062ms
+2026-07-08 23:07:59.481 +03:00 [INF] Executed endpoint 'RealityLens.Presentation.Controllers.AnnotationController.GetByGroundTruth (RealityLens.Presentation)'
+2026-07-08 23:07:59.482 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5128/api/annotations/groundtruth/c9e01e20-8b1f-4a9c-a828-b4109c8140c5 - 200 null application/json; charset=utf-8 15.9341ms

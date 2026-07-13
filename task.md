@@ -1,0 +1,26 @@
+- `[x]` 1. Delete `LibraryItem` and its repositories.
+  - `[x]` Delete `LibraryItem.cs`
+  - `[x]` Delete `ILibraryRepository.cs` and `LibraryRepository.cs`
+  - `[x]` Remove `LibraryItem` DbSet and configurations from `RealityLensDbContext.cs` and DI setup.
+- `[x]` 2. Modify `TrainingItem` Entity.
+  - `[x]` Change `LibraryItemId` to `AssessmentId` in `TrainingItem.cs`.
+  - `[x]` Update `TrainingItemConfiguration.cs`.
+- `[x]` 3. Modify `ParticipantAnswer` Entity.
+  - `[x]` Add `AssessmentId` in `ParticipantAnswer.cs` while keeping `TrainingItemId`.
+  - `[x]` Update `ParticipantAnswerConfiguration.cs`.
+- `[x]` 4. Update `Assessment` Entity and Enums.
+  - `[x]` Ensure `AssessmentStatus` has `Draft`, `Ready`, `Published`, `Archived`.
+  - `[x]` Update `Assessment.cs` methods.
+- `[x]` 5. Update Backend CQRS Queries.
+  - `[x]` Update `SearchLibraryItemsQueryHandler` to query `Assessments`.
+  - `[x]` Update `GetLibraryItemByIdQueryHandler` to query `Assessments`.
+  - `[x]` Update `GetTrainingPackItemsQueryHandler`.
+- `[x]` 6. Update Backend CQRS Commands.
+  - `[x]` Update `AddTrainingItem` to use `AssessmentId`.
+  - `[x]` Update `SubmitParticipantAnswer` to include/lookup `AssessmentId`.
+- `[x]` 7. Create Database Migration.
+  - `[x]` Add EF Core migration `RefactorToAssessmentCentric`.
+  - `[x]` Apply migration to the database.
+- `[ ]` 8. Update Frontend.
+  - `[ ]` Check `LibraryItemDto` and `TrainingPackDto` id mappings.
+  - `[ ]` Update provider logic if necessary.

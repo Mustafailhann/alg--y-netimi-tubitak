@@ -1,0 +1,41 @@
+# Flutter
+apps/client/.dart_tool/
+apps/client/build/
+apps/client/.flutter-plugins
+apps/client/.flutter-plugins-dependencies
+apps/client/.packages
+
+# .NET
+apps/api/**/bin/
+apps/api/**/obj/
+apps/api/**/*.user
+apps/api/logs/
+
+# Python
+apps/ai-service/__pycache__/
+apps/ai-service/**/__pycache__/
+apps/ai-service/.venv/
+apps/ai-service/*.pyc
+
+# Docker volumes
+.docker/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/settings.json
+.idea/
+*.suo
+*.user
+
+node_modules/
+temp_hash_gen/
+temp_updater/
+*.jpg
+*.png
+*.webp
+test_*.py
+test_*.js
+revert_shapes.py
