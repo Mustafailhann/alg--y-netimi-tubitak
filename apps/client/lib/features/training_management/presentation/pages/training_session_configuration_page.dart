@@ -40,13 +40,12 @@ class _TrainingSessionConfigurationPageState extends ConsumerState<TrainingSessi
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(next.error!), backgroundColor: Colors.red),
           );
-        } else if (next.currentSession != null && 
-                   next.loadingState == SessionLoadingState.idle && 
-                   previous?.loadingState == SessionLoadingState.submitting) {
+        } else if (previous?.loadingState == SessionLoadingState.submitting &&
+            next.loadingState == SessionLoadingState.idle &&
+            next.currentSession != null) {
           
           if (_autoJoinStudent && _studentNicknameController.text.isNotEmpty) {
-            final origin = Uri.base.origin;
-            final urlString = '$origin/#/student/join?code=${next.currentSession!.joinCode}&nickname=${_studentNicknameController.text}';
+            final urlString = '${Uri.base.origin}/#/student/join?code=${next.currentSession!.joinCode}&nickname=${_studentNicknameController.text}';
             launchUrl(Uri.parse(urlString), webOnlyWindowName: '_blank');
           }
           
@@ -57,9 +56,6 @@ class _TrainingSessionConfigurationPageState extends ConsumerState<TrainingSessi
 
     final state = ref.watch(trainingSessionNotifierProvider);
     final notifier = ref.read(trainingSessionNotifierProvider.notifier);
-
-    // Development mode check
-    const isDev = bool.fromEnvironment('dart.vm.product') == false;
 
     return Scaffold(
       appBar: AppBar(title: const Text('Oturumu Yapılandır')),
@@ -97,29 +93,27 @@ class _TrainingSessionConfigurationPageState extends ConsumerState<TrainingSessi
             value: _autoAdvance,
             onChanged: (v) => setState(() => _autoAdvance = v),
           ),
-          if (isDev) ...[
-            const Divider(),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 8.0),
-              child: Text('Geliştirici Araçları', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.deepPurple)),
-            ),
-            SwitchListTile(
-              title: const Text('Öğrenci Sekmesini Otomatik Aç (Auto-Join)'),
-              value: _autoJoinStudent,
-              onChanged: (v) => setState(() => _autoJoinStudent = v),
-              activeColor: Colors.deepPurple,
-            ),
-            if (_autoJoinStudent)
-              TextField(
-                controller: _studentNicknameController,
-                decoration: const InputDecoration(
-                  labelText: 'Öğrenci Nickname (Development)',
-                  hintText: 'student1',
-                  border: OutlineInputBorder(),
-                ),
+          const Divider(),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 8.0),
+            child: Text('Simülasyon Araçları', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.deepPurple)),
+          ),
+          SwitchListTile(
+            title: const Text('Öğrenci Sekmesini Otomatik Aç (Auto-Join)'),
+            value: _autoJoinStudent,
+            onChanged: (v) => setState(() => _autoJoinStudent = v),
+            activeColor: Colors.deepPurple,
+          ),
+          if (_autoJoinStudent)
+            TextField(
+              controller: _studentNicknameController,
+              decoration: const InputDecoration(
+                labelText: 'Öğrenci Nickname (Development)',
+                hintText: 'student1',
+                border: OutlineInputBorder(),
               ),
-            const Divider(),
-          ],
+            ),
+          const Divider(),
           const SizedBox(height: 32),
           if (state.error != null)
             Text(state.error!, style: const TextStyle(color: Colors.red)),
@@ -135,7 +129,7 @@ class _TrainingSessionConfigurationPageState extends ConsumerState<TrainingSessi
                       showImmediateFeedback: _showImmediateFeedback,
                       leaderboardEnabled: _leaderboardEnabled,
                       autoAdvance: _autoAdvance,
-                      devStudentNickname: isDev && _autoJoinStudent ? _studentNicknameController.text : null,
+                      devStudentNickname: _autoJoinStudent ? _studentNicknameController.text : null,
                     );
                   },
             child: state.loadingState == SessionLoadingState.submitting
