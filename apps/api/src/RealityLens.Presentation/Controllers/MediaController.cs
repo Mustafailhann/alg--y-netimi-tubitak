@@ -40,6 +40,9 @@ public class MediaController : ControllerBase
     public async Task<IActionResult> GetPreview(Guid id)
     {
         var media = await _service.GetByIdAsync(id);
+        if (media.StoragePath.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+            return Redirect(media.StoragePath);
+
         var path = _storageService.GetPhysicalPath(media.StoragePath);
         if (!System.IO.File.Exists(path)) return NotFound();
         return PhysicalFile(path, media.MimeType, enableRangeProcessing: true);
@@ -51,6 +54,10 @@ public class MediaController : ControllerBase
     {
         var media = await _service.GetByIdAsync(id);
         if (string.IsNullOrWhiteSpace(media.ThumbnailPath)) return NotFound();
+
+        if (media.ThumbnailPath.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+            return Redirect(media.ThumbnailPath);
+
         var path = _storageService.GetPhysicalPath(media.ThumbnailPath);
         if (!System.IO.File.Exists(path)) return NotFound();
         

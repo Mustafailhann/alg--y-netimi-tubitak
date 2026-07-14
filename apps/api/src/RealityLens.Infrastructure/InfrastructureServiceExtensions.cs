@@ -59,7 +59,7 @@ public static class InfrastructureServiceExtensions
         });
 
         services.AddScoped<IFileValidator, RealityLens.Infrastructure.Storage.FileValidator>();
-        services.AddScoped<IStorageService, RealityLens.Infrastructure.Storage.LocalStorageService>();
+        services.AddScoped<IStorageService, RealityLens.Infrastructure.Storage.CloudinaryStorageService>();
 
         services.AddScoped<IMediaProcessor, RealityLens.Infrastructure.Processing.ImageProcessor>();
         services.AddScoped<IMediaProcessor, RealityLens.Infrastructure.Processing.VideoProcessor>();
