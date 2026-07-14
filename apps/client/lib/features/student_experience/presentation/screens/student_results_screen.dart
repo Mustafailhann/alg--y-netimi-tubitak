@@ -121,7 +121,7 @@ class StudentResultsScreen extends ConsumerWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _buildScoreRing(context, 'Toplam Puan', results.progressPercentage, theme.colorScheme.secondary),
+                        _buildScoreRing(context, 'Toplam Puan', results.score, theme.colorScheme.secondary),
                         _buildScoreRing(context, 'Sınıflandırma', avgClassification, Colors.green),
                         if (avgLocalization > 0 || mistakes.any((m) => m.passedLocalization == false))
                           _buildScoreRing(context, 'İşaretleme (IoU)', avgLocalization, Colors.orange),

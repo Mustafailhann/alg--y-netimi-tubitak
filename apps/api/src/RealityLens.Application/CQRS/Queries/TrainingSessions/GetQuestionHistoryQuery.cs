@@ -75,7 +75,11 @@ public class GetQuestionHistoryQueryHandler : IQueryHandler<GetQuestionHistoryQu
             
             string mediaUrl = item.Assessment?.Media?.StoragePath ?? string.Empty;
 
-            bool? passedLocalization = answer?.LocalizationScore >= localizationThreshold;
+            bool? passedLocalization = null;
+            if (item.Assessment?.GroundTruth?.Judgment == Judgment.Manipulated && answer?.Judgment == Judgment.Manipulated)
+            {
+                passedLocalization = answer?.LocalizationScore >= localizationThreshold;
+            }
 
             history.Add(new QuestionHistoryDto(
                 item.Id,

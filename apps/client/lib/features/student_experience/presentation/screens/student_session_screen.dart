@@ -224,7 +224,7 @@ class _StudentSessionScreenState extends ConsumerState<StudentSessionScreen> {
               ElevatedButton(
                 onPressed: () {
                   final ms = DateTime.now().difference(_questionStartTime ?? DateTime.now()).inMilliseconds;
-                  final annotations = ref.read(participantAnnotationProvider(widget.sessionId)).valueOrNull ?? [];
+                  final annotations = ref.read(participantAnnotationProvider(q.groundTruthId)).valueOrNull ?? [];
                   final annotationId = annotations.isNotEmpty ? annotations.last.id : null;
                   
                   ref.read(studentSessionNotifierProvider.notifier).submitAnswer('Manipulated', ms, annotationId: annotationId);
