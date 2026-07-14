@@ -37,7 +37,6 @@ class _DevelopmentRoleSelectorState extends ConsumerState<DevelopmentRoleSelecto
 
   @override
   Widget build(BuildContext context) {
-    if (!kDebugMode) return const SizedBox.shrink();
 
     return Container(
       padding: const EdgeInsets.all(16.0),
