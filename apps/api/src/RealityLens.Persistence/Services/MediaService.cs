@@ -73,10 +73,10 @@ public class MediaService : IMediaService
 
         string checksum = ComputeSha256(request.Content);
 
-        bool isDuplicate = await _dbContext.Media.AnyAsync(m => m.Checksum == checksum);
-        if (isDuplicate)
+        var existingMedia = await _dbContext.Media.FirstOrDefaultAsync(m => m.Checksum == checksum);
+        if (existingMedia != null)
         {
-            throw new InvalidOperationException("Duplicate file detected.");
+            return Map(existingMedia);
         }
 
         string extension = System.IO.Path.GetExtension(request.OriginalFileName).ToLowerInvariant();

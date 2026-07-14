@@ -25,9 +25,14 @@ public class CloudinaryStorageService : IStorageService
 
     public async Task<string> SaveFileAsync(Stream content, string extension, string folder = "originals")
     {
+        var ms = new MemoryStream();
+        await content.CopyToAsync(ms);
+        ms.Position = 0;
+        content.Position = 0; // reset original stream for the caller!
+
         var uploadParams = new RawUploadParams()
         {
-            File = new FileDescription(Guid.NewGuid().ToString() + extension, content),
+            File = new FileDescription(Guid.NewGuid().ToString() + extension, ms),
             Folder = "RealityLens/" + folder
         };
 
