@@ -2,6 +2,7 @@ using Serilog;
 using RealityLens.Application;
 using RealityLens.Infrastructure;
 using RealityLens.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -82,6 +83,22 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddPersistence(builder.Configuration);
 
     var app = builder.Build();
+
+    // Automatically apply EF Core migrations on startup
+    using (var scope = app.Services.CreateScope())
+    {
+        var services = scope.ServiceProvider;
+        try
+        {
+            var context = services.GetRequiredService<RealityLens.Persistence.RealityLensDbContext>();
+            context.Database.Migrate();
+            Log.Information("Database migrations applied successfully.");
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex, "An error occurred while migrating the database.");
+        }
+    }
 
     app.UseSwagger();
     app.UseSwaggerUI(options =>
