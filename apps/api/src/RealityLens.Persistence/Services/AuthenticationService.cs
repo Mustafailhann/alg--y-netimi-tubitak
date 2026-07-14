@@ -50,6 +50,19 @@ public class AuthenticationService : IAuthenticationService
         return await IssueTokensAsync(user, cancellationToken);
     }
 
+    public async Task<AuthenticationResponse> DevLoginAsync(DevLoginRequest request, CancellationToken cancellationToken = default)
+    {
+        var roleName = request.Role == "Participant" ? "Student" : request.Role;
+        var user = await _context.Users
+            .Include(u => u.Role)
+            .FirstOrDefaultAsync(u => u.Role.Name == roleName && u.IsActive, cancellationToken);
+
+        if (user is null)
+            throw new UnauthorizedAccessException($"No seeded user found for role {request.Role}.");
+
+        return await IssueTokensAsync(user, cancellationToken);
+    }
+
     public async Task<AuthenticationResponse> RefreshAsync(RefreshRequest request, CancellationToken cancellationToken = default)
     {
         // NOTE (MVP): Refresh tokens are stored as plaintext for MVP.

@@ -5,23 +5,37 @@ import '../notifiers/student_session_notifier.dart';
 import '../notifiers/student_session_state.dart';
 
 class JoinSessionScreen extends ConsumerStatefulWidget {
-  const JoinSessionScreen({super.key});
+  final String? initialCode;
+  final String? initialNickname;
+
+  const JoinSessionScreen({super.key, this.initialCode, this.initialNickname});
 
   @override
   ConsumerState<JoinSessionScreen> createState() => _JoinSessionScreenState();
 }
 
 class _JoinSessionScreenState extends ConsumerState<JoinSessionScreen> {
-  final _joinCodeController = TextEditingController();
-  final _nicknameController = TextEditingController();
+  late final TextEditingController _joinCodeController;
+  late final TextEditingController _nicknameController;
   final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
+    _joinCodeController = TextEditingController(text: widget.initialCode);
+    _nicknameController = TextEditingController(text: widget.initialNickname);
+
     // Check if there is an active session
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(studentSessionNotifierProvider.notifier).restoreSession();
+
+      if (widget.initialCode != null && widget.initialCode!.isNotEmpty &&
+          widget.initialNickname != null && widget.initialNickname!.isNotEmpty) {
+        ref.read(studentSessionNotifierProvider.notifier).joinSession(
+          widget.initialCode!.trim(),
+          widget.initialNickname!.trim(),
+        );
+      }
     });
   }
 

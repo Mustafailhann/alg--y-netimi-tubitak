@@ -17,8 +17,23 @@ class AuthNotifier extends StateNotifier<AuthState> {
   }
 
   Future<void> checkAuth() async {
-    // BYPASS LOGIN: Automatically act as authenticated
-    state = AuthState.authenticated;
+    // Only set authenticated if tokens exist
+    final hasToken = await _secureStorageService.getAccessToken() != null;
+    if (hasToken) {
+      state = AuthState.authenticated;
+    } else {
+      state = AuthState.unauthenticated;
+    }
+  }
+
+  Future<void> devLogin(String role) async {
+    try {
+      await _repository.devLogin(role);
+      state = AuthState.authenticated;
+    } catch (e) {
+      state = AuthState.unauthenticated;
+      rethrow;
+    }
   }
 
   Future<void> login(String email, String password) async {

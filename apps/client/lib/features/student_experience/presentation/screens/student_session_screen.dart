@@ -233,15 +233,36 @@ class _StudentSessionScreenState extends ConsumerState<StudentSessionScreen> {
   }
 
   Widget _buildFeedback(StudentSessionState state) {
-    return const Center(
+    if (state.currentReview != null) {
+      final review = state.currentReview!;
+      final isCorrect = review.submittedJudgment == review.correctJudgment;
+      
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(isCorrect ? Icons.check_circle : Icons.cancel, color: isCorrect ? Colors.green : Colors.red, size: 64),
+            const SizedBox(height: 24),
+            Text(isCorrect ? 'Tebrikler, Doğru Cevap!' : 'Maalesef Yanlış Cevap.', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 16),
+            Text('Sizin Cevabınız: ${review.submittedJudgment == 'Real' ? 'Gerçek' : 'Müdahale Edilmiş'}', style: const TextStyle(fontSize: 18)),
+            Text('Doğru Cevap: ${review.correctJudgment == 'Real' ? 'Gerçek' : 'Müdahale Edilmiş'}', style: const TextStyle(fontSize: 18)),
+            const SizedBox(height: 32),
+            Text(state.sessionData?.autoAdvance == true ? 'Sıradaki soruya geçiliyor...' : 'Öğretmenin sonraki soruya geçmesi bekleniyor...', style: const TextStyle(fontSize: 16, fontStyle: FontStyle.italic)),
+          ],
+        ),
+      );
+    }
+
+    return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.check_circle, color: Colors.green, size: 64),
-          SizedBox(height: 24),
-          Text('Cevap Gönderildi!', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-          SizedBox(height: 16),
-          Text('Öğretmenin sonraki soruya geçmesi bekleniyor...', style: TextStyle(fontSize: 16)),
+          const Icon(Icons.check_circle, color: Colors.green, size: 64),
+          const SizedBox(height: 24),
+          const Text('Cevap Gönderildi!', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 16),
+          Text(state.sessionData?.autoAdvance == true ? 'Sıradaki soruya geçiliyor...' : 'Öğretmenin sonraki soruya geçmesi bekleniyor...', style: const TextStyle(fontSize: 16)),
         ],
       ),
     );

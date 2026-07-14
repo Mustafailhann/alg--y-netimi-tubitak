@@ -15,6 +15,7 @@ abstract class TrainingSessionRepository {
     bool leaderboardEnabled,
     bool canvasRequired,
     int? maximumAttempts,
+    bool autoAdvance,
   );
   Future<void> startSession(String sessionId, String teacherId, String version);
   Future<void> completeSession(String sessionId, String teacherId, String version);

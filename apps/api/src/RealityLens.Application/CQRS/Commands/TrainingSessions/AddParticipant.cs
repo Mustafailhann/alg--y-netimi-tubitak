@@ -47,17 +47,29 @@ public class AddParticipantCommandHandler : ICommandHandler<AddParticipantComman
         if (session == null)
             throw new System.Collections.Generic.KeyNotFoundException($"TrainingSession with JoinCode {command.JoinCode} not found.");
 
-        var participant = new Participant(session.Id, command.StudentIdentifier);
+        // Check if participant already exists with this identifier
+        var existingParticipant = session.Participants.FirstOrDefault(p => p.StudentIdentifier == command.StudentIdentifier);
         
-        session.AddParticipant(participant);
-
-        // In DDD, saving the aggregate root should save the participant.
-        await _repository.UpdateAsync(session, cancellationToken);
-
-        _logger.LogInformation("Completed AddParticipant successfully. ParticipantId: {ParticipantId}", participant.Id);
+        Guid participantId;
+        if (existingParticipant != null)
+        {
+            participantId = existingParticipant.Id;
+            _logger.LogInformation("Participant {ParticipantId} already exists in session. Rejoining.", participantId);
+            
+            existingParticipant.UpdateConnectionStatus(RealityLens.Domain.Enums.ConnectionStatus.Online);
+            await _repository.UpdateAsync(session, cancellationToken);
+        }
+        else
+        {
+            var participant = new Participant(session.Id, command.StudentIdentifier);
+            session.AddParticipant(participant);
+            await _repository.UpdateAsync(session, cancellationToken);
+            participantId = participant.Id;
+            _logger.LogInformation("Completed AddParticipant successfully. ParticipantId: {ParticipantId}", participantId);
+        }
         
-        var token = _tokenService.GenerateParticipantToken(participant.Id, session.Id);
+        var token = _tokenService.GenerateParticipantToken(participantId, session.Id);
 
-        return new AddParticipantResponse(participant.Id, token);
+        return new AddParticipantResponse(participantId, token);
     }
 }

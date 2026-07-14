@@ -16,6 +16,7 @@ abstract class TrainingSessionRemoteDataSource {
     bool leaderboardEnabled,
     bool canvasRequired,
     int? maximumAttempts,
+    bool autoAdvance,
   );
   Future<void> startSession(String sessionId, String teacherId, String version);
   Future<void> completeSession(String sessionId, String teacherId, String version);
@@ -59,6 +60,7 @@ class TrainingSessionRemoteDataSourceImpl implements TrainingSessionRemoteDataSo
     bool leaderboardEnabled,
     bool canvasRequired,
     int? maximumAttempts,
+    bool autoAdvance,
   ) async {
     final response = await dio.post('/v1/training-sessions', data: {
       'teacherId': teacherId,
@@ -71,6 +73,7 @@ class TrainingSessionRemoteDataSourceImpl implements TrainingSessionRemoteDataSo
         'leaderboardEnabled': leaderboardEnabled,
         'canvasRequired': canvasRequired,
         'maximumAttempts': maximumAttempts,
+        'autoAdvance': autoAdvance,
       }
     });
     return response.data['id'];

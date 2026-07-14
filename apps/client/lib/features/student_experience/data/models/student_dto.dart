@@ -3,12 +3,14 @@ class StudentSessionStateDto {
   final String joinCode;
   final String status;
   final int? currentQuestionIndex;
+  final bool autoAdvance;
 
   const StudentSessionStateDto({
     required this.sessionId,
     required this.joinCode,
     required this.status,
     this.currentQuestionIndex,
+    this.autoAdvance = false,
   });
 
   factory StudentSessionStateDto.fromJson(Map<String, dynamic> json) {
@@ -17,6 +19,7 @@ class StudentSessionStateDto {
       joinCode: json['joinCode'] as String,
       status: json['status'] as String,
       currentQuestionIndex: json['currentQuestionIndex'] as int?,
+      autoAdvance: json['autoAdvance'] as bool? ?? false,
     );
   }
 }
@@ -148,12 +151,16 @@ class QuestionReviewDto {
   final List<dynamic> studentAnnotations;
   final double mediaWidth;
   final double mediaHeight;
+  final String? submittedJudgment;
+  final String? correctJudgment;
 
   const QuestionReviewDto({
     required this.teacherAnnotations,
     required this.studentAnnotations,
     required this.mediaWidth,
     required this.mediaHeight,
+    this.submittedJudgment,
+    this.correctJudgment,
   });
 
   factory QuestionReviewDto.fromJson(Map<String, dynamic> json) {
@@ -162,6 +169,8 @@ class QuestionReviewDto {
       studentAnnotations: json['studentAnnotations'] as List<dynamic>? ?? [],
       mediaWidth: (json['mediaWidth'] as num?)?.toDouble() ?? 800.0,
       mediaHeight: (json['mediaHeight'] as num?)?.toDouble() ?? 600.0,
+      submittedJudgment: json['submittedJudgment'] as String?,
+      correctJudgment: json['correctJudgment'] as String?,
     );
   }
 }

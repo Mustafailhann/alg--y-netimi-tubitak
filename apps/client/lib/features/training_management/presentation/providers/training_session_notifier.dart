@@ -67,6 +67,8 @@ class TrainingSessionNotifier extends StateNotifier<TrainingSessionState> {
     bool leaderboardEnabled = false,
     bool canvasRequired = false,
     int? maximumAttempts,
+    bool autoAdvance = false,
+    String? devStudentNickname,
   }) async {
     state = state.copyWith(loadingState: SessionLoadingState.submitting, error: null);
     try {
@@ -80,7 +82,8 @@ class TrainingSessionNotifier extends StateNotifier<TrainingSessionState> {
         showImmediateFeedback, 
         leaderboardEnabled, 
         canvasRequired, 
-        maximumAttempts
+        maximumAttempts,
+        autoAdvance,
       );
       final newSession = await _repository.getById(sessionId, teacherId);
       state = state.copyWith(

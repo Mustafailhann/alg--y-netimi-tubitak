@@ -12,6 +12,7 @@ public class SessionConfiguration : ValueObject
     public bool LeaderboardEnabled { get; private set; }
     public bool CanvasRequired { get; private set; }
     public int? MaximumAttempts { get; private set; }
+    public bool AutoAdvance { get; private set; }
 
     private SessionConfiguration() { } // Required for EF Core serialization
 
@@ -22,7 +23,8 @@ public class SessionConfiguration : ValueObject
         bool showImmediateFeedback, 
         bool leaderboardEnabled, 
         bool canvasRequired, 
-        int? maximumAttempts)
+        int? maximumAttempts,
+        bool autoAdvance = false)
     {
         TimeLimitMinutes = timeLimitMinutes;
         RandomQuestionOrder = randomQuestionOrder;
@@ -31,6 +33,7 @@ public class SessionConfiguration : ValueObject
         LeaderboardEnabled = leaderboardEnabled;
         CanvasRequired = canvasRequired;
         MaximumAttempts = maximumAttempts;
+        AutoAdvance = autoAdvance;
     }
 
     protected override IEnumerable<object?> GetEqualityComponents()
@@ -42,5 +45,6 @@ public class SessionConfiguration : ValueObject
         yield return LeaderboardEnabled;
         yield return CanvasRequired;
         yield return MaximumAttempts;
+        yield return AutoAdvance;
     }
 }

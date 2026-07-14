@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace RealityLens.Application.CQRS.Commands.TrainingSessions;
 
@@ -22,11 +24,15 @@ public class SubmitAnswerCommandHandler : ICommandHandler<SubmitAnswerCommand, G
 {
     private readonly IApplicationDbContext _context;
     private readonly IScoringService _scoringService;
+    private readonly IServiceScopeFactory _scopeFactory;
+    private readonly Microsoft.Extensions.Logging.ILogger<SubmitAnswerCommandHandler> _logger;
 
-    public SubmitAnswerCommandHandler(IApplicationDbContext context, IScoringService scoringService)
+    public SubmitAnswerCommandHandler(IApplicationDbContext context, IScoringService scoringService, IServiceScopeFactory scopeFactory, Microsoft.Extensions.Logging.ILogger<SubmitAnswerCommandHandler> logger)
     {
         _context = context;
         _scoringService = scoringService;
+        _scopeFactory = scopeFactory;
+        _logger = logger;
     }
 
     public async Task<Guid> HandleAsync(SubmitAnswerCommand request, CancellationToken cancellationToken)
@@ -179,6 +185,37 @@ public class SubmitAnswerCommandHandler : ICommandHandler<SubmitAnswerCommand, G
         participant.UpdateProgress(progress, newScore);
 
         await _context.SaveChangesAsync(cancellationToken);
+
+        if (session.Configuration.AutoAdvance)
+        {
+            var answerCount = await _context.ParticipantAnswers
+                .CountAsync(a => a.TrainingSessionId == session.Id && a.TrainingItemId == currentItem.Id, cancellationToken);
+                
+            _logger.LogInformation("AutoAdvance Check: AnswerCount={AnswerCount}, ParticipantCount={ParticipantCount}", answerCount, session.Participants.Count);
+
+            if (answerCount >= session.Participants.Count)
+            {
+                var teacherId = session.CreatedBy;
+                var sessionId = session.Id;
+                
+                _ = Task.Run(async () =>
+                {
+                    await Task.Delay(4000); // Wait 4 seconds for immediate feedback
+                    try
+                    {
+                        using var scope = _scopeFactory.CreateScope();
+                        var dispatcher = scope.ServiceProvider.GetRequiredService<ICommandDispatcher>();
+                        _logger.LogInformation("Dispatching NextQuestionCommand for session {SessionId}", sessionId);
+                        await dispatcher.DispatchAsync(new NextQuestionCommand(sessionId, teacherId), CancellationToken.None);
+                        _logger.LogInformation("NextQuestionCommand completed successfully");
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, "Failed to auto advance session {SessionId}", sessionId);
+                    }
+                });
+            }
+        }
 
         return answer.Id;
     }

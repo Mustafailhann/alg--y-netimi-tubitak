@@ -7,12 +7,14 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RealityLens.Presentation.Controllers.v1;
 
 [ApiController]
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/training-packs")]
+[Authorize]
 public class TrainingPackController : ControllerBase
 {
     private readonly ICommandDispatcher _commandDispatcher;

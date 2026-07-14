@@ -75,7 +75,8 @@ public class TrainingSessionController : ControllerBase
             request.Configuration.ShowImmediateFeedback,
             request.Configuration.LeaderboardEnabled,
             request.Configuration.CanvasRequired,
-            request.Configuration.MaximumAttempts);
+            request.Configuration.MaximumAttempts,
+            request.Configuration.AutoAdvance);
         var sessionId = await _commandDispatcher.DispatchAsync<CreateTrainingSessionCommand, Guid>(command, cancellationToken);
         return CreatedAtAction(nameof(GetById), new { id = sessionId, teacherId = request.TeacherId }, new { id = sessionId });
     }
@@ -249,7 +250,17 @@ public class TrainingSessionController : ControllerBase
 }
 
 // Request DTOs
-public record CreateTrainingSessionRequest(Guid TrainingPackId, Guid TeacherId, RealityLens.Domain.ValueObjects.SessionConfiguration Configuration);
+public record SessionConfigurationDto(
+    int? TimeLimitMinutes, 
+    bool RandomQuestionOrder, 
+    bool AllowRetry, 
+    bool ShowImmediateFeedback, 
+    bool LeaderboardEnabled, 
+    bool CanvasRequired, 
+    int? MaximumAttempts,
+    bool AutoAdvance);
+
+public record CreateTrainingSessionRequest(Guid TrainingPackId, Guid TeacherId, SessionConfigurationDto Configuration);
 public record StartTrainingSessionRequest(Guid TeacherId, Guid Version);
 public record CompleteTrainingSessionRequest(Guid TeacherId, Guid Version);
 public record CancelTrainingSessionRequest(Guid TeacherId, Guid Version);

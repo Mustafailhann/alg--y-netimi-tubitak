@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace RealityLens.Application.CQRS.Queries.TrainingSessions;
 
-public record TrainingSessionDetailDto(Guid Id, Guid TrainingPackId, string JoinCode, TrainingSessionStatus Status, int ParticipantCount, int? TimeLimitMinutes, bool RandomQuestionOrder, bool AllowRetry, bool ShowImmediateFeedback, bool LeaderboardEnabled, bool CanvasRequired, int? MaximumAttempts, DateTime CreatedAt, Guid Version);
+public record TrainingSessionDetailDto(Guid Id, Guid TrainingPackId, string JoinCode, TrainingSessionStatus Status, int ParticipantCount, int? TimeLimitMinutes, bool RandomQuestionOrder, bool AllowRetry, bool ShowImmediateFeedback, bool LeaderboardEnabled, bool CanvasRequired, int? MaximumAttempts, bool AutoAdvance, DateTime CreatedAt, Guid Version);
 
 public record GetTrainingSessionByIdQuery(Guid SessionId, Guid TeacherId) : IQuery<TrainingSessionDetailDto?>;
 
@@ -40,6 +40,7 @@ public class GetTrainingSessionByIdQueryHandler : IQueryHandler<GetTrainingSessi
                 x.Configuration.LeaderboardEnabled,
                 x.Configuration.CanvasRequired,
                 x.Configuration.MaximumAttempts,
+                x.Configuration.AutoAdvance,
                 x.CreatedAt,
                 x.Version))
             .FirstOrDefaultAsync(cancellationToken);

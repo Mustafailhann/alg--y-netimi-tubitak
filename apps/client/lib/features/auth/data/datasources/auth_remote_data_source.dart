@@ -4,6 +4,7 @@ import '../../../../core/network/api_client.dart';
 
 abstract class AuthRemoteDataSource {
   Future<Map<String, dynamic>> login(String email, String password);
+  Future<Map<String, dynamic>> devLogin(String role);
   Future<void> logout();
 }
 
@@ -26,6 +27,24 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     } on DioException catch (e) {
       if (e.response != null && e.response!.statusCode == 401) {
         throw Exception('Invalid credentials or inactive account.');
+      }
+      throw Exception('Network error or server unavailable.');
+    }
+  }
+
+  @override
+  Future<Map<String, dynamic>> devLogin(String role) async {
+    try {
+      final response = await _dio.post(
+        '/auth/dev-login',
+        data: {
+          'role': role,
+        },
+      );
+      return response.data;
+    } on DioException catch (e) {
+      if (e.response != null && e.response!.statusCode == 401) {
+        throw Exception('Invalid role.');
       }
       throw Exception('Network error or server unavailable.');
     }

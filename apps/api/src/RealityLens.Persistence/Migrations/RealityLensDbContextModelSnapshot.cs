@@ -1022,6 +1022,30 @@ namespace RealityLens.Persistence.Migrations
                             RoleId = new Guid("11111111-1111-1111-1111-111111111111"),
                             UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Version = new Guid("00000000-0000-0000-0000-000000000001")
+                        },
+                        new
+                        {
+                            Id = new Guid("66666666-6666-6666-6666-666666666666"),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Email = "teacher@realitylens.gov.tr",
+                            IsActive = true,
+                            IsDeleted = false,
+                            PasswordHash = "AQAAAAIAAYagAAAAEGv8DVAzG3eUqtvqQEk3PXiHwO9RCf6olWgqQQFI1oqWAbER6ybTyaENB6MfWBQG9g==",
+                            RoleId = new Guid("22222222-2222-2222-2222-222222222222"),
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Version = new Guid("00000000-0000-0000-0000-000000000001")
+                        },
+                        new
+                        {
+                            Id = new Guid("77777777-7777-7777-7777-777777777777"),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Email = "student@realitylens.gov.tr",
+                            IsActive = true,
+                            IsDeleted = false,
+                            PasswordHash = "AQAAAAIAAYagAAAAEGv8DVAzG3eUqtvqQEk3PXiHwO9RCf6olWgqQQFI1oqWAbER6ybTyaENB6MfWBQG9g==",
+                            RoleId = new Guid("33333333-3333-3333-3333-333333333333"),
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Version = new Guid("00000000-0000-0000-0000-000000000001")
                         });
                 });
 
@@ -1267,6 +1291,9 @@ namespace RealityLens.Persistence.Migrations
                                 .HasColumnType("uuid");
 
                             b1.Property<bool>("AllowRetry")
+                                .HasColumnType("boolean");
+
+                            b1.Property<bool>("AutoAdvance")
                                 .HasColumnType("boolean");
 
                             b1.Property<bool>("CanvasRequired")

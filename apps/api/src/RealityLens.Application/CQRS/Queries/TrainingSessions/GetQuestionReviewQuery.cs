@@ -16,7 +16,9 @@ public record QuestionReviewDto(
     List<AnnotationResponse> TeacherAnnotations,
     List<AnnotationResponse> StudentAnnotations,
     double MediaWidth,
-    double MediaHeight);
+    double MediaHeight,
+    string? SubmittedJudgment,
+    string? CorrectJudgment);
 
 public class GetQuestionReviewQueryHandler : IQueryHandler<GetQuestionReviewQuery, QuestionReviewDto?>
 {
@@ -57,8 +59,9 @@ public class GetQuestionReviewQueryHandler : IQueryHandler<GetQuestionReviewQuer
         if (trainingItem.Assessment?.GroundTruth != null)
         {
             var gtId = trainingItem.Assessment.GroundTruth.Id;
+            var gtCreatorId = pack.TeacherId;
             var tAnns = await _context.Annotations
-                .Where(a => a.GroundTruthId == gtId && a.ParticipantAnswerId == null)
+                .Where(a => a.GroundTruthId == gtId && a.CreatedBy == gtCreatorId)
                 .ToListAsync(cancellationToken);
             
             teacherAnnotations = tAnns.Select(a => new AnnotationResponse
@@ -97,6 +100,12 @@ public class GetQuestionReviewQueryHandler : IQueryHandler<GetQuestionReviewQuer
         double mediaWidth = trainingItem.Assessment?.Media?.Width ?? 800.0;
         double mediaHeight = trainingItem.Assessment?.Media?.Height ?? 600.0;
 
-        return new QuestionReviewDto(teacherAnnotations, studentAnnotations, mediaWidth, mediaHeight);
+        return new QuestionReviewDto(
+            teacherAnnotations, 
+            studentAnnotations, 
+            mediaWidth, 
+            mediaHeight,
+            answer?.Judgment.ToString(),
+            trainingItem.Assessment?.GroundTruth?.Judgment.ToString());
     }
 }

@@ -15,6 +15,7 @@ class StudentSessionState {
   final StudentSessionPhase phase;
   final StudentSessionStateDto? sessionData;
   final StudentQuestionDto? currentQuestion;
+  final QuestionReviewDto? currentReview;
   final StudentSessionResultDto? results;
   final List<QuestionHistoryDto>? history;
   final bool isLoading;
@@ -24,6 +25,7 @@ class StudentSessionState {
     this.phase = StudentSessionPhase.idle,
     this.sessionData,
     this.currentQuestion,
+    this.currentReview,
     this.results,
     this.history,
     this.isLoading = false,
@@ -34,6 +36,7 @@ class StudentSessionState {
     StudentSessionPhase? phase,
     StudentSessionStateDto? sessionData,
     StudentQuestionDto? currentQuestion,
+    QuestionReviewDto? currentReview,
     StudentSessionResultDto? results,
     List<QuestionHistoryDto>? history,
     bool? isLoading,
@@ -43,6 +46,7 @@ class StudentSessionState {
       phase: phase ?? this.phase,
       sessionData: sessionData ?? this.sessionData,
       currentQuestion: currentQuestion ?? this.currentQuestion,
+      currentReview: currentReview ?? this.currentReview,
       results: results ?? this.results,
       history: history ?? this.history,
       isLoading: isLoading ?? this.isLoading,

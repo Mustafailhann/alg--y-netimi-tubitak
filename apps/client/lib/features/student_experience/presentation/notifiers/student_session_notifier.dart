@@ -6,6 +6,7 @@ import 'student_session_state.dart';
 import '../../../../core/storage/secure_storage_service.dart';
 import '../../domain/jwt_decoder.dart';
 import '../../domain/participant_token.dart';
+import '../../data/models/student_dto.dart';
 
 class StudentSessionNotifier extends StateNotifier<StudentSessionState> {
   final Ref _ref;
@@ -202,9 +203,20 @@ class StudentSessionNotifier extends StateNotifier<StudentSessionState> {
         annotationId: annotationId,
       );
       
+      QuestionReviewDto? review;
+      // Fetch review if showImmediateFeedback is enabled (or we can just attempt to fetch it)
+      if (state.currentQuestion != null) {
+        try {
+           review = await repository.getQuestionReview(_sessionId!, state.currentQuestion!.id);
+        } catch (_) {
+           // Might not be available or not allowed, ignore
+        }
+      }
+
       state = state.copyWith(
         isLoading: false,
         phase: StudentSessionPhase.submitted, // or waitingNext
+        currentReview: review,
       );
     } catch (e) {
       state = state.copyWith(isLoading: false, error: 'Failed to submit answer: $e');

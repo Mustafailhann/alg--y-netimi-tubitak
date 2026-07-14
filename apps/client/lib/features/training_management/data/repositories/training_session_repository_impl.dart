@@ -39,6 +39,7 @@ class TrainingSessionRepositoryImpl implements TrainingSessionRepository {
     bool leaderboardEnabled,
     bool canvasRequired,
     int? maximumAttempts,
+    bool autoAdvance,
   ) {
     return remoteDataSource.createSession(
       teacherId, 
@@ -50,6 +51,7 @@ class TrainingSessionRepositoryImpl implements TrainingSessionRepository {
       leaderboardEnabled,
       canvasRequired,
       maximumAttempts,
+      autoAdvance,
     );
   }
 

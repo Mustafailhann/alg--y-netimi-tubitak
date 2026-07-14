@@ -17,7 +17,9 @@ public record StudentSessionStateDto(
     int CurrentQuestionIndex,
     int TotalQuestions,
     ConnectionStatus ConnectionStatus,
-    bool HasAnsweredCurrentQuestion);
+    bool HasAnsweredCurrentQuestion,
+    bool AutoAdvance,
+    bool ShowImmediateFeedback);
 
 public class GetStudentSessionStateQueryHandler : IQueryHandler<GetStudentSessionStateQuery, StudentSessionStateDto?>
 {
@@ -68,7 +70,9 @@ public class GetStudentSessionStateQueryHandler : IQueryHandler<GetStudentSessio
             session.CurrentQuestionIndex,
             totalQuestions,
             participant.ConnectionStatus,
-            hasAnswered
+            hasAnswered,
+            session.Configuration.AutoAdvance,
+            session.Configuration.ShowImmediateFeedback
         );
     }
 }

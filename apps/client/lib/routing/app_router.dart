@@ -61,7 +61,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: '/student/join',
-        builder: (context, state) => const JoinSessionScreen(),
+        builder: (context, state) {
+          final code = state.uri.queryParameters['code'];
+          final nickname = state.uri.queryParameters['nickname'];
+          return JoinSessionScreen(initialCode: code, initialNickname: nickname);
+        },
       ),
       GoRoute(
         path: '/student/results/mock',

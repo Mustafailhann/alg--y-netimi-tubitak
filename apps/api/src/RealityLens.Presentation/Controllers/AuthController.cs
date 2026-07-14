@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RealityLens.Application.DTOs.Auth;
 using RealityLens.Application.Interfaces;
@@ -36,6 +36,28 @@ public class AuthController : ControllerBase
         catch (UnauthorizedAccessException)
         {
             return Unauthorized(new { message = "Invalid credentials or inactive account." });
+        }
+    }
+
+    /// <summary>Authenticate for development environment.</summary>
+    [HttpPost("dev-login")]
+    [AllowAnonymous]
+    [ProducesResponseType(typeof(AuthenticationResponse), 200)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(401)]
+    public async Task<IActionResult> DevLogin([FromBody] DevLoginRequest request, [FromServices] Microsoft.Extensions.Hosting.IHostEnvironment env, CancellationToken cancellationToken)
+    {
+        if (!env.IsDevelopment())
+            return NotFound();
+
+        try
+        {
+            var response = await _authService.DevLoginAsync(request, cancellationToken);
+            return Ok(response);
+        }
+        catch (UnauthorizedAccessException)
+        {
+            return Unauthorized(new { message = "Invalid role." });
         }
     }
 

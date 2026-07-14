@@ -46,7 +46,7 @@ public class SubmitAnswerCommandHandlerTests
         await context.SaveChangesAsync();
 
         var mockScoringService = new Moq.Mock<RealityLens.Application.Interfaces.IScoringService>();
-        var handler = new SubmitAnswerCommandHandler(context, mockScoringService.Object);
+        var handler = new SubmitAnswerCommandHandler(context, mockScoringService.Object, null);
         var command = new SubmitAnswerCommand(session.Id, participant.Id, Judgment.Real, 100, new List<Guid> { Guid.NewGuid() });
 
         // Act
@@ -93,7 +93,7 @@ public class SubmitAnswerCommandHandlerTests
         await context.SaveChangesAsync();
 
         var mockScoringService = new Moq.Mock<RealityLens.Application.Interfaces.IScoringService>();
-        var handler = new SubmitAnswerCommandHandler(context, mockScoringService.Object);
+        var handler = new SubmitAnswerCommandHandler(context, mockScoringService.Object, null);
         var command = new SubmitAnswerCommand(session.Id, participant.Id, Judgment.Real, 100, new List<Guid> { Guid.NewGuid() });
 
         // Act
@@ -126,7 +126,7 @@ public class SubmitAnswerCommandHandlerTests
         await context.SaveChangesAsync();
 
         var mockScoringService = new Moq.Mock<RealityLens.Application.Interfaces.IScoringService>();
-        var handler = new SubmitAnswerCommandHandler(context, mockScoringService.Object);
+        var handler = new SubmitAnswerCommandHandler(context, mockScoringService.Object, null);
         var command = new SubmitAnswerCommand(session.Id, participant.Id, Judgment.Real, 100, new List<Guid> { Guid.NewGuid() });
 
         // Act

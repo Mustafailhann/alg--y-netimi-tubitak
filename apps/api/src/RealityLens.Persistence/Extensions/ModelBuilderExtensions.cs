@@ -27,13 +27,38 @@ public static class ModelBuilderExtensions
             new { Id = faceSwapCategoryId, Name = "FaceSwap", Description = "Replacing one person's face with another (deepfake)", CreatedAt = now, UpdatedAt = now, IsDeleted = false, Version = defaultVersion }
         );
 
+        var teacherUserId = Guid.Parse("66666666-6666-6666-6666-666666666666");
+        var studentUserId = Guid.Parse("77777777-7777-7777-7777-777777777777");
+
         modelBuilder.Entity<User>().HasData(
             new { 
                 Id = adminUserId, 
                 Email = "admin@realitylens.gov.tr", 
-                PasswordHash = "AQAAAAIAAYagAAAAEGv8DVAzG3eUqtvqQEk3PXiHwO9RCf6olWgqQQFI1oqWAbER6ybTyaENB6MfWBQG9g==", // Real application will set this via initial setup or a command
+                PasswordHash = "AQAAAAIAAYagAAAAEGv8DVAzG3eUqtvqQEk3PXiHwO9RCf6olWgqQQFI1oqWAbER6ybTyaENB6MfWBQG9g==", 
                 IsActive = true, 
                 RoleId = adminRoleId,
+                CreatedAt = now, 
+                UpdatedAt = now,
+                IsDeleted = false,
+                Version = defaultVersion
+            },
+            new { 
+                Id = teacherUserId, 
+                Email = "teacher@realitylens.gov.tr", 
+                PasswordHash = "AQAAAAIAAYagAAAAEGv8DVAzG3eUqtvqQEk3PXiHwO9RCf6olWgqQQFI1oqWAbER6ybTyaENB6MfWBQG9g==", 
+                IsActive = true, 
+                RoleId = teacherRoleId,
+                CreatedAt = now, 
+                UpdatedAt = now,
+                IsDeleted = false,
+                Version = defaultVersion
+            },
+            new { 
+                Id = studentUserId, 
+                Email = "student@realitylens.gov.tr", 
+                PasswordHash = "AQAAAAIAAYagAAAAEGv8DVAzG3eUqtvqQEk3PXiHwO9RCf6olWgqQQFI1oqWAbER6ybTyaENB6MfWBQG9g==", 
+                IsActive = true, 
+                RoleId = studentRoleId,
                 CreatedAt = now, 
                 UpdatedAt = now,
                 IsDeleted = false,

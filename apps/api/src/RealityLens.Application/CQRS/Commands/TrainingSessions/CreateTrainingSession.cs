@@ -20,7 +20,8 @@ public record CreateTrainingSessionCommand(
     bool ShowImmediateFeedback, 
     bool LeaderboardEnabled, 
     bool CanvasRequired, 
-    int? MaximumAttempts) : ICommand<Guid>;
+    int? MaximumAttempts,
+    bool AutoAdvance = false) : ICommand<Guid>;
 
 public class CreateTrainingSessionCommandValidator : AbstractValidator<CreateTrainingSessionCommand>
 {
@@ -73,7 +74,8 @@ public class CreateTrainingSessionCommandHandler : ICommandHandler<CreateTrainin
             command.ShowImmediateFeedback,
             command.LeaderboardEnabled,
             command.CanvasRequired,
-            command.MaximumAttempts
+            command.MaximumAttempts,
+            command.AutoAdvance
         );
 
         var session = new TrainingSession(command.PackId, command.TeacherId, joinCode, config);
