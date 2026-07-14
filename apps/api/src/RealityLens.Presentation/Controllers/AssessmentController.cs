@@ -33,7 +33,7 @@ public class AssessmentController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "Administrator,Teacher")]
     public async Task<IActionResult> Create([FromBody] CreateAssessmentRequest request)
     {
         var result = await _service.CreateAsync(request);
@@ -41,14 +41,14 @@ public class AssessmentController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    [Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "Administrator,Teacher")]
     public async Task<IActionResult> Update(Guid id, [FromBody] UpdateAssessmentRequest request)
     {
         return Ok(await _service.UpdateAsync(id, request));
     }
 
     [HttpPut("{id}/ready")]
-    [Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "Administrator,Teacher")]
     public async Task<IActionResult> MarkReady(Guid id)
     {
         await _service.MarkReadyAsync(id);
@@ -56,7 +56,7 @@ public class AssessmentController : ControllerBase
     }
 
     [HttpPut("{id}/publish")]
-    [Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "Administrator,Teacher")]
     public async Task<IActionResult> Publish(Guid id)
     {
         await _service.PublishAsync(id);
@@ -64,7 +64,7 @@ public class AssessmentController : ControllerBase
     }
 
     [HttpPut("{id}/archive")]
-    [Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "Administrator,Teacher")]
     public async Task<IActionResult> Archive(Guid id)
     {
         await _service.ArchiveAsync(id);
