@@ -143,15 +143,18 @@ class ReviewMistakeDialog extends ConsumerWidget {
                   final reviewData = snapshot.data!;
                   final teacherAnns = reviewData.teacherAnnotations.map((e) => AnnotationModel.fromJson(e as Map<String, dynamic>)).toList();
                   final studentAnns = reviewData.studentAnnotations.map((e) => AnnotationModel.fromJson(e as Map<String, dynamic>)).toList();
-                  final baseUrl = EnvironmentConfig.baseUrl.replaceAll(RegExp(r'/api/?$'), '');
-                  var cleanFileUrl = history.mediaUrl.replaceAll('\\', '/');
-                  if (cleanFileUrl.startsWith('/api')) {
-                    cleanFileUrl = cleanFileUrl.replaceFirst('/api', '');
+                  String url = history.mediaUrl;
+                  if (!url.startsWith('http')) {
+                    final baseUrl = EnvironmentConfig.baseUrl.replaceAll(RegExp(r'/api/?$'), '');
+                    var cleanFileUrl = url.replaceAll('\\', '/');
+                    if (cleanFileUrl.startsWith('/api')) {
+                      cleanFileUrl = cleanFileUrl.replaceFirst('/api', '');
+                    }
+                    if (!cleanFileUrl.startsWith('/')) {
+                      cleanFileUrl = '/$cleanFileUrl';
+                    }
+                    url = '$baseUrl$cleanFileUrl';
                   }
-                  if (!cleanFileUrl.startsWith('/')) {
-                    cleanFileUrl = '/$cleanFileUrl';
-                  }
-                  final url = '$baseUrl$cleanFileUrl';
 
                   return Row(
                     crossAxisAlignment: CrossAxisAlignment.start,

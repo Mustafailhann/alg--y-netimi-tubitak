@@ -115,15 +115,18 @@ class _StudentSessionScreenState extends ConsumerState<StudentSessionScreen> {
     if (q == null) return const Center(child: CircularProgressIndicator());
 
     final isImage = q.mediaType == 'Image';
-    final baseUrl = EnvironmentConfig.baseUrl.replaceAll(RegExp(r'/api/?$'), '');
-    var cleanFileUrl = q.fileUrl.replaceAll('\\', '/');
-    if (cleanFileUrl.startsWith('/api')) {
-      cleanFileUrl = cleanFileUrl.replaceFirst('/api', '');
+    String url = q.fileUrl;
+    if (!url.startsWith('http')) {
+      final baseUrl = EnvironmentConfig.baseUrl.replaceAll(RegExp(r'/api/?$'), '');
+      var cleanFileUrl = url.replaceAll('\\', '/');
+      if (cleanFileUrl.startsWith('/api')) {
+        cleanFileUrl = cleanFileUrl.replaceFirst('/api', '');
+      }
+      if (!cleanFileUrl.startsWith('/')) {
+        cleanFileUrl = '/$cleanFileUrl';
+      }
+      url = '$baseUrl$cleanFileUrl';
     }
-    if (!cleanFileUrl.startsWith('/')) {
-      cleanFileUrl = '/$cleanFileUrl';
-    }
-    final url = '$baseUrl$cleanFileUrl';
 
     return Column(
       children: [
@@ -185,15 +188,18 @@ class _StudentSessionScreenState extends ConsumerState<StudentSessionScreen> {
     final q = state.currentQuestion;
     if (q == null) return const Center(child: CircularProgressIndicator());
 
-    final baseUrl = EnvironmentConfig.baseUrl.replaceAll(RegExp(r'/api/?$'), '');
-    var cleanFileUrl = q.fileUrl.replaceAll('\\', '/');
-    if (cleanFileUrl.startsWith('/api')) {
-      cleanFileUrl = cleanFileUrl.replaceFirst('/api', '');
+    String url = q.fileUrl;
+    if (!url.startsWith('http')) {
+      final baseUrl = EnvironmentConfig.baseUrl.replaceAll(RegExp(r'/api/?$'), '');
+      var cleanFileUrl = url.replaceAll('\\', '/');
+      if (cleanFileUrl.startsWith('/api')) {
+        cleanFileUrl = cleanFileUrl.replaceFirst('/api', '');
+      }
+      if (!cleanFileUrl.startsWith('/')) {
+        cleanFileUrl = '/$cleanFileUrl';
+      }
+      url = '$baseUrl$cleanFileUrl';
     }
-    if (!cleanFileUrl.startsWith('/')) {
-      cleanFileUrl = '/$cleanFileUrl';
-    }
-    final url = '$baseUrl$cleanFileUrl';
 
     return Column(
       children: [
